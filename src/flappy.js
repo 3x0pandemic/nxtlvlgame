@@ -1,15 +1,38 @@
 import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
+import React from 'react-phaser';
+
+let assets = {
+  'bird': {type: 'image', src: '../assets/frenz.png'},
+  'pipe': {type: 'image', src: '../assets/favicon.png'},
+  'jump': {type: 'audio', src: '../assets/jump_07.wav'},
+  'hit': {type: 'audio', src: '../assets/nes-05-03.wav'}
+};
+
+export default class Flappy extends React.Component {
+
+  getInitialState () {
+    return {
+        stars: Array.apply(null, {length: 12}).map(function (_, i) {
+            return [i, 0.7 + Math.random() * 0.2];
+        }),
+        score: 0
+    };
+  }
+
+
+
+
+  render () {
+    return <game assets={assets} width={800} height={600} physics={Phaser.Physics.ARCADE}>;
+  }
+}
+
+React.render(<Flappy/>, 'content');
 
 // Create our 'main' state that will contain the game
 var mainState = {
-  preload: function () {
-    game.load.image('bird', 'assets/frenz.jpg');
-    game.load.image('pipe', 'assets/favicon.png');
-    game.load.audio('jump', 'assets/jump_07.wav');
-    game.load.audio('hit', 'assets/nes-05-03.wav');
-  },
 
   create: function () {
   // Change the background color of the game to blue
