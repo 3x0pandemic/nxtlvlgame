@@ -1,3 +1,15 @@
+This is the Montana Code School, Bozeman Cohort 5 Group project.
+  Project Leader - Timothy Walsh,
+  Contributors - Calvin Stiff,
+                 Jeffrey Pawlak
+
+After cloning:
+  1. "npm install" from directory
+  2. open in preferred editor
+  3. using terminal "npm run dev"
+  4. game should be playable in localhost:3000
+
+
 # Phaser + ES6 + Webpack.
 #### A bootstrap project to create games with Phaser + ES6 + Webpack.
 
@@ -36,7 +48,7 @@ Navigate to the cloned repo’s directory.
 
 Run:
 
-```npm install``` 
+```npm install```
 
 or if you choose yarn, just run ```yarn```
 
