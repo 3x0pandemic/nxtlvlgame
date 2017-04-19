@@ -15,7 +15,7 @@ module.exports = {
   entry: {
     app: [
       'babel-polyfill',
-      path.resolve(__dirname, 'src/mario.js')
+      path.resolve(__dirname, 'src/flappy.js')
     ],
     vendor: ['pixi', 'p2', 'phaser', 'webfontloader']
 

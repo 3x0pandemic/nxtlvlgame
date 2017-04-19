@@ -8269,9 +8269,9 @@ module.exports = {
 /* 180 */
 /* unknown exports provided */
 /* all exports used */
-/*!**********************!*\
-  !*** ./src/mario.js ***!
-  \**********************/
+/*!***********************!*\
+  !*** ./src/flappy.js ***!
+  \***********************/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8304,116 +8304,248 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var assets = {
+  'bird': { type: 'image', src: '../assets/star.png' },
+  'pipe': { type: 'image', src: '../assets/favicon.png' },
   'sky': { type: 'image', src: '../assets/sky.png' },
-  'ground': { type: 'image', src: '../assets/platform.png' },
-  'star': { type: 'image', src: '../assets/star.png' },
-  'dude': { type: 'spritesheet', src: '../assets/dude.png', width: 32, height: 48 }
+  'jump': { type: 'audio', src: '../assets/jump_07.wav' },
+  'hit': { type: 'audio', src: '../assets/nes-05-03.wav' }
 };
 
-var scoreStyle = {
-  fontSize: '32px',
-  fill: '#000'
-};
+var Flappy = function (_React$Component) {
+  _inherits(Flappy, _React$Component);
 
-var Mario = function (_React$Component) {
-  _inherits(Mario, _React$Component);
+  function Flappy() {
+    _classCallCheck(this, Flappy);
 
-  function Mario() {
-    _classCallCheck(this, Mario);
-
-    var _this = _possibleConstructorReturn(this, (Mario.__proto__ || Object.getPrototypeOf(Mario)).call(this));
+    var _this = _possibleConstructorReturn(this, (Flappy.__proto__ || Object.getPrototypeOf(Flappy)).call(this));
 
     _this.state = {
-      stars: Array.apply(null, { length: 12 }).map(function (_, i) {
-        return [i, 0.7 + Math.random() * 0.2];
-      }),
+      pipes: [],
       score: 0
     };
-    _this.collectStar = _this.collectStar.bind(_this);
     return _this;
   }
 
-  _createClass(Mario, [{
+  _createClass(Flappy, [{
     key: 'onInput',
     value: function onInput(context) {
-      var player = context.nodes.player.obj;
-      var cursors = context.input.cursors;
+      var spacebar = context.input.keys.spacebar;
 
-      if (cursors.left.isDown) {
-        player.body.velocity.x = -150;
-        player.animations.play('left');
-      } else if (cursors.right.isDown) {
-        player.body.velocity.x = 150;
-        player.animations.play('right');
-      } else {
-        player.body.velocity.x = 0;
-        player.animations.stop();
-        player.frame = 4;
-      }
-
-      if (cursors.up.isDown && player.body.touching.down) {
-        player.body.velocity.y = -350;
+      if (spacebar.isDown) {
+        this.jump();
       }
     }
   }, {
-    key: 'collectStar',
-    value: function collectStar(playerNode, starNode) {
-      this.setState({
-        stars: this.state.stars.filter(function (_, i) {
-          return i !== starNode.props.i;
-        }),
-        score: this.state.score + 10
-      });
+    key: 'addOnePipe',
+    value: function addOnePipe(x, y) {
+      // Create a pipe at the position x and y
+      var pipe = game.add.sprite(x, y, 'pipe');
+
+      // Add the pipe to our previously created group
+      this.pipes.add(pipe);
+
+      // Enable physics on the pipe
+      game.physics.arcade.enable(pipe);
+
+      // Add velocity to the pipe to make it move left
+      pipe.body.velocity.x = -200;
+
+      // Automatically kill the pipe when it's no longer visible
+      pipe.checkWorldBounds = true;
+      pipe.outOfBoundsKill = true;
+    }
+  }, {
+    key: 'addRowOfPipes',
+    value: function addRowOfPipes() {
+      this.score += 1;
+      this.labelScore.text = this.score;
+      // Randomly pick a number between 1 and 5
+      // This will be the hole position
+      var hole = Math.floor(Math.random() * 5) + 1;
+      // Add the 6 pipes
+      // With one big hole at position 'hole' and 'hole + 1'
+      for (var i = 0; i < 20; i++) {
+        if (i !== hole && i !== hole + 1) {
+          this.addOnePipe(800, i * 60 + 10);
+        }
+      }
+    }
+  }, {
+    key: 'jump',
+    value: function jump() {
+      if (this.bird.alive === false) {
+        return;
+      }
+      // Add a vertical velocity to the bird
+      this.bird.body.velocity.y = -350;
+      // Create an animation on the bird
+      var animation = game.add.tween(this.bird);
+
+      // Change the angle of the bird to -20° in 100 milliseconds
+      animation.to({ angle: -20 }, 100);
+
+      // And start the animation
+      animation.start();
+
+      this.jumpSound.play();
     }
   }, {
     key: 'render',
     value: function render() {
-      var stars = this.state.stars.map(function (star, i) {
-        return _reactPhaser2.default.createElement('sprite', { key: star[0], i: i, x: star[0] * 70,
-          y: 0, assetKey: 'star', bodyGravityY: 18, bodyBounceY: star[1] });
+      var pipes = this.state.pipes.map(function (pipe, i) {
+        return _reactPhaser2.default.createElement('sprite', { key: pipe[0], i: i, x: pipe[0] * 70,
+          y: 0, assetKey: 'pipe', bodyGravityY: 18, bodyBounceY: pipe[1] });
       });
-
       return _reactPhaser2.default.createElement(
         'game',
         { assets: assets, width: 800, height: 600, physics: _phaser2.default.Physics.ARCADE },
         _reactPhaser2.default.createElement('sprite', { assetKey: 'sky' }),
+        _reactPhaser2.default.createElement('sprite', { assetKey: 'bird', x: 100, y: 245,
+          bodyPhysics: true, bodyBounceY: 0.2, bodyGravityY: 300,
+          bodyCollideWorldBounds: true }),
         _reactPhaser2.default.createElement(
           'group',
-          { name: 'platforms', enableBody: true },
-          _reactPhaser2.default.createElement('sprite', { name: 'ground', assetKey: 'ground', y: 600 - 64, scale: { x: 2, y: 2 }, bodyImmovable: true }),
-          _reactPhaser2.default.createElement('sprite', { name: 'ledge1', assetKey: 'ground', x: 400, y: 400, bodyImmovable: true }),
-          _reactPhaser2.default.createElement('sprite', { name: 'ledge2', assetKey: 'ground', x: -150, y: 250, bodyImmovable: true })
-        ),
-        _reactPhaser2.default.createElement(
-          'group',
-          { name: 'stars', enableBody: true },
-          _reactPhaser2.default.createElement('collides', { 'with': 'platforms' }),
-          stars
-        ),
-        _reactPhaser2.default.createElement(
-          'sprite',
-          { name: 'player', x: 32, y: 450, assetKey: 'dude',
-            bodyPhysics: true, bodyBounceY: 0.2, bodyGravityY: 300,
-            bodyCollideWorldBounds: true },
-          _reactPhaser2.default.createElement('animation', { id: 'left', frames: [0, 1, 2, 3], fps: 10, loop: true }),
-          _reactPhaser2.default.createElement('animation', { id: 'right', frames: [5, 6, 7, 8], fps: 10, loop: true }),
-          _reactPhaser2.default.createElement('collides', { 'with': 'platforms' }),
-          _reactPhaser2.default.createElement('overlaps', { 'with': 'stars', onOverlap: this.collectStar })
-        ),
-        _reactPhaser2.default.createElement('text', { text: 'Score: ' + this.state.score, style: scoreStyle,
-          x: 16, y: 16 }),
-        _reactPhaser2.default.createElement('input', { cursors: true, onInput: this.onInput })
+          { name: 'pipes', enableBody: true },
+          pipes
+        )
       );
     }
   }]);
 
-  return Mario;
+  return Flappy;
 }(_reactPhaser2.default.Component);
 
-exports.default = Mario;
+exports.default = Flappy;
 
 
-_reactPhaser2.default.render(_reactPhaser2.default.createElement(Mario, null), 'content');
+_reactPhaser2.default.render(_reactPhaser2.default.createElement(Flappy, null), 'content');
+
+// Create our 'main' state that will contain the game
+var mainState = {
+
+  create: function create() {
+    // Change the background color of the game to blue
+    game.stage.backgroundColor = '#4286f4';
+    // Create an empty group
+    this.pipes = game.add.group();
+
+    this.jumpSound = game.add.audio('jump');
+    this.hitSound = game.add.audio('hit');
+
+    // Set the physics system
+    game.physics.startSystem(_phaser2.default.Physics.ARCADE);
+
+    // Display the bird at the position x=100 and y=245
+    this.bird = game.add.sprite(100, 245, 'bird');
+
+    // Add physics to the bird
+    // Needed for: movements, gravity, collisions, etc.
+    game.physics.arcade.enable(this.bird);
+
+    // Add gravity to the bird to make it fall
+    this.bird.body.gravity.y = 1000;
+
+    // Call the 'jump' function when the spacekey is hit
+    var spaceKey = game.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
+    spaceKey.onDown.add(this.jump, this);
+
+    this.timer = game.time.events.loop(1500, this.addRowOfPipes, this);
+    this.score = 0;
+    this.labelScore = game.add.text(20, 20, '0', { font: '30px Arial', fill: '#ffffff' });
+
+    // Move the anchor to the left and downward
+    this.bird.anchor.setTo(-0.2, 0.5);
+  },
+
+  update: function update() {
+    // If the bird is out of the screen (too high or too low)
+    // Call the 'restartGame' function
+    if (this.bird.y < 0 || this.bird.y > 800) {
+      this.restartGame();
+    }
+    game.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null, this);
+    if (this.bird.angle < 20) {
+      this.bird.angle += 1;
+    }
+  },
+  // Make the bird jump
+  jump: function jump() {
+    if (this.bird.alive === false) {
+      return;
+    }
+    // Add a vertical velocity to the bird
+    this.bird.body.velocity.y = -350;
+    // Create an animation on the bird
+    var animation = game.add.tween(this.bird);
+
+    // Change the angle of the bird to -20° in 100 milliseconds
+    animation.to({ angle: -20 }, 100);
+
+    // And start the animation
+    animation.start();
+
+    this.jumpSound.play();
+  },
+
+  // Restart the game
+  restartGame: function restartGame() {
+    // Start the 'main' state, which restarts the game
+    game.state.start('main');
+  },
+  addOnePipe: function addOnePipe(x, y) {
+    // Create a pipe at the position x and y
+    var pipe = game.add.sprite(x, y, 'pipe');
+
+    // Add the pipe to our previously created group
+    this.pipes.add(pipe);
+
+    // Enable physics on the pipe
+    game.physics.arcade.enable(pipe);
+
+    // Add velocity to the pipe to make it move left
+    pipe.body.velocity.x = -200;
+
+    // Automatically kill the pipe when it's no longer visible
+    pipe.checkWorldBounds = true;
+    pipe.outOfBoundsKill = true;
+  },
+  addRowOfPipes: function addRowOfPipes() {
+    this.score += 1;
+    this.labelScore.text = this.score;
+    // Randomly pick a number between 1 and 5
+    // This will be the hole position
+    var hole = Math.floor(Math.random() * 5) + 1;
+    // Add the 6 pipes
+    // With one big hole at position 'hole' and 'hole + 1'
+    for (var i = 0; i < 20; i++) {
+      if (i !== hole && i !== hole + 1) {
+        this.addOnePipe(800, i * 60 + 10);
+      }
+    }
+  },
+  hitPipe: function hitPipe() {
+    // If the bird has already hit a pipe, do nothing
+    // It means the bird is already falling off the screen
+    if (this.bird.alive === false) {
+      return;
+    }
+    // Set the alive property of the bird to false
+    this.bird.alive = false;
+
+    // Prevent new pipes from appearing
+    game.time.events.remove(this.timer);
+
+    // Go through all the pipes, and stop their movement
+    this.pipes.forEach(function (p) {
+      p.body.velocity.x = 0;
+    }, this);
+    this.hitSound.play();
+  }
+
+};
+
+// Initialize Phaser, and create a 400px by 490px game
+var game = new _phaser2.default.Game(800, 800);
 
 /***/ }),
 /* 181 */
@@ -20143,13 +20275,13 @@ module.exports = createTreeImpl(createInitAdapter(nodeTypes));
 /* 432 */
 /* unknown exports provided */
 /* all exports used */
-/*!*******************************************!*\
-  !*** multi babel-polyfill ./src/mario.js ***!
-  \*******************************************/
+/*!********************************************!*\
+  !*** multi babel-polyfill ./src/flappy.js ***!
+  \********************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! babel-polyfill */181);
-module.exports = __webpack_require__(/*! /Users/cms/nxtlvlgame/src/mario.js */180);
+module.exports = __webpack_require__(/*! /Users/cms/nxtlvlgame/src/flappy.js */180);
 
 
 /***/ })

@@ -4,28 +4,98 @@ import Phaser from 'phaser';
 import React from 'react-phaser';
 
 let assets = {
-  'bird': {type: 'image', src: '../assets/frenz.png'},
+  'bird': {type: 'image', src: '../assets/star.png'},
   'pipe': {type: 'image', src: '../assets/favicon.png'},
+  'sky': {type: 'image', src: '../assets/sky.png'},
   'jump': {type: 'audio', src: '../assets/jump_07.wav'},
   'hit': {type: 'audio', src: '../assets/nes-05-03.wav'}
 };
 
 export default class Flappy extends React.Component {
-
-  getInitialState () {
-    return {
-        stars: Array.apply(null, {length: 12}).map(function (_, i) {
-            return [i, 0.7 + Math.random() * 0.2];
-        }),
-        score: 0
+  constructor () {
+    super();
+    this.state = {
+      pipes: [],
+      score: 0
     };
   }
 
+  onInput (context) {
+    let spacebar = context.input.keys.spacebar;
 
+    if (spacebar.isDown) {
+      this.jump();
+    }
+  }
 
+  addOnePipe (x, y) {
+    // Create a pipe at the position x and y
+    var pipe = game.add.sprite(x, y, 'pipe');
+
+    // Add the pipe to our previously created group
+    this.pipes.add(pipe);
+
+    // Enable physics on the pipe
+    game.physics.arcade.enable(pipe);
+
+    // Add velocity to the pipe to make it move left
+    pipe.body.velocity.x = -200;
+
+    // Automatically kill the pipe when it's no longer visible
+    pipe.checkWorldBounds = true;
+    pipe.outOfBoundsKill = true;
+  }
+
+  addRowOfPipes () {
+    this.score += 1;
+    this.labelScore.text = this.score;
+    // Randomly pick a number between 1 and 5
+    // This will be the hole position
+    var hole = Math.floor(Math.random() * 5) + 1;
+    // Add the 6 pipes
+    // With one big hole at position 'hole' and 'hole + 1'
+    for (var i = 0; i < 20; i++) {
+      if (i !== hole && i !== hole + 1) {
+        this.addOnePipe(800, i * 60 + 10);
+      }
+    }
+  }
+
+  jump () {
+    if (this.bird.alive === false) {
+      return;
+    }
+    // Add a vertical velocity to the bird
+    this.bird.body.velocity.y = -350;
+    // Create an animation on the bird
+    let animation = game.add.tween(this.bird);
+
+// Change the angle of the bird to -20° in 100 milliseconds
+    animation.to({angle: -20}, 100);
+
+// And start the animation
+    animation.start();
+
+    this.jumpSound.play();
+  }
 
   render () {
-    return <game assets={assets} width={800} height={600} physics={Phaser.Physics.ARCADE}>;
+    let pipes = this.state.pipes.map(function (pipe, i) {
+      return (
+        <sprite key={pipe[0]} i={i} x={pipe[0] * 70}
+          y={0} assetKey="pipe" bodyGravityY={18} bodyBounceY={pipe[1]}/>
+      );
+    });
+    return (
+      <game assets={assets} width={800} height={600} physics={Phaser.Physics.ARCADE}>
+        <sprite assetKey="sky"/>
+        <sprite assetKey="bird" x={100} y={245}
+          bodyPhysics bodyBounceY={0.2} bodyGravityY={300}
+          bodyCollideWorldBounds/>
+        <group name="pipes" enableBody>
+            {pipes}
+        </group>
+      </game>);
   }
 }
 
@@ -160,9 +230,3 @@ var mainState = {
 
 // Initialize Phaser, and create a 400px by 490px game
 var game = new Phaser.Game(800, 800);
-
-// Add the 'mainState' and call it 'main'
-game.state.add('main', mainState);
-
-// Start the state to actually start the game
-game.state.start('main');
