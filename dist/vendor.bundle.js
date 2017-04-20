@@ -149,7 +149,7 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 433);
+/******/ 	return __webpack_require__(__webpack_require__.s = 440);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -346,46 +346,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 124:
-/* unknown exports provided */
-/* all exports used */
-/*!******************************************!*\
-  !*** ./~/phaser-ce/build/custom/pixi.js ***!
-  \******************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(/*! -!./pixi.js */ 368);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 59)))
-
-/***/ }),
-
-/***/ 125:
-/* unknown exports provided */
-/* all exports used */
-/*!**************************************************!*\
-  !*** ./~/phaser-ce/build/custom/phaser-split.js ***!
-  \**************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(/*! -!./phaser-split.js */ 367);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 59)))
-
-/***/ }),
-
-/***/ 126:
-/* unknown exports provided */
-/* all exports used */
-/*!****************************************!*\
-  !*** ./~/phaser-ce/build/custom/p2.js ***!
-  \****************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(/*! -!./p2.js */ 366);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 59)))
-
-/***/ }),
-
-/***/ 182:
+/***/ 127:
 /* unknown exports provided */
 /* all exports used */
 /*!******************************************!*\
@@ -416,7 +377,20 @@ g,0<d.length&&(d=Ba[d[0]])&&(a.c[e]=d))}a.c[e]||(d=Ba[e])&&(a.c[e]=d);for(d=0;d<
 
 /***/ }),
 
-/***/ 366:
+/***/ 36:
+/* unknown exports provided */
+/* all exports used */
+/*!**************************************************!*\
+  !*** ./~/phaser-ce/build/custom/phaser-split.js ***!
+  \**************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Phaser"] = __webpack_require__(/*! -!./phaser-split.js */ 374);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 60)))
+
+/***/ }),
+
+/***/ 373:
 /* unknown exports provided */
 /* all exports used */
 /*!****************************************!*\
@@ -14065,7 +14039,7 @@ World.prototype.raycast = function(result, ray){
 
 /***/ }),
 
-/***/ 367:
+/***/ 374:
 /* unknown exports provided */
 /* all exports used */
 /*!**************************************************!*\
@@ -97868,7 +97842,7 @@ PIXI.TextureSilentFail = true;
 
 /***/ }),
 
-/***/ 368:
+/***/ 375:
 /* unknown exports provided */
 /* all exports used */
 /*!******************************************!*\
@@ -105386,7 +105360,7 @@ PIXI.TextureUvs = function()
 
 /***/ }),
 
-/***/ 433:
+/***/ 440:
 /* unknown exports provided */
 /* all exports used */
 /*!******************************************!*\
@@ -105394,15 +105368,15 @@ PIXI.TextureUvs = function()
   \******************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! pixi */124);
-__webpack_require__(/*! p2 */126);
-__webpack_require__(/*! phaser */125);
-module.exports = __webpack_require__(/*! webfontloader */182);
+__webpack_require__(/*! pixi */61);
+__webpack_require__(/*! p2 */62);
+__webpack_require__(/*! phaser */36);
+module.exports = __webpack_require__(/*! webfontloader */127);
 
 
 /***/ }),
 
-/***/ 59:
+/***/ 60:
 /* unknown exports provided */
 /* all exports used */
 /*!***********************************!*\
@@ -105432,6 +105406,32 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ 61:
+/* unknown exports provided */
+/* all exports used */
+/*!******************************************!*\
+  !*** ./~/phaser-ce/build/custom/pixi.js ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["PIXI"] = __webpack_require__(/*! -!./pixi.js */ 375);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 60)))
+
+/***/ }),
+
+/***/ 62:
+/* unknown exports provided */
+/* all exports used */
+/*!****************************************!*\
+  !*** ./~/phaser-ce/build/custom/p2.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["p2"] = __webpack_require__(/*! -!./p2.js */ 373);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 60)))
 
 /***/ })
 

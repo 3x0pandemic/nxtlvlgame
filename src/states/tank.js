@@ -2,38 +2,35 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-let game = new Phaser.Game(640, 480, Phaser.CANVAS, 'game');
+export default class extends Phaser.State {
+  constructor () {
+    super();
+    this.tank = null;
+    this.turret = null;
+    this.flame = null;
+    this.bullet = null;
+    this.background = null;
+    this.targets = null;
+    this.power = 300;
+    this.powerText = null;
+    this.cursors = null;
+    this.fireButton = null;
+  }
 
-let PhaserGame = function (game) {
-  this.tank = null;
-  this.turret = null;
-  this.flame = null;
-  this.bullet = null;
-
-  this.background = null;
-  this.targets = null;
-
-  this.power = 300;
-  this.powerText = null;
-
-  this.cursors = null;
-  this.fireButton = null;
-};
-
-PhaserGame.prototype = {
-  init: function () {
+  init () {
     this.game.renderer.renderSession.roundPixels = true;
 
     this.game.world.setBounds(0, 0, 992, 480);
 
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.physics.arcade.gravity.y = 200;
-  },
-  preload: function () {
+  }
+
+  preload () {
            //  We need this because the assets are on Amazon S3
            //  Remove the next 2 lines if running locally
-    // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
-    // this.load.crossOrigin = 'anonymous';
+    this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
+    this.load.crossOrigin = 'anonymous';
     this.load.image('tank', 'assets/tank.png');
     this.load.image('turret', 'assets/turret.png');
     this.load.image('bullet', 'assets/bullet.png');
@@ -41,8 +38,9 @@ PhaserGame.prototype = {
     this.load.image('flame', 'assets/flame.png');
     this.load.image('target', 'assets/target.png');
            //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
-  },
-  create: function () {
+  }
+
+  create () {
            //  Simple but pretty background
     this.background = this.add.sprite(0, 0, 'background');
 
@@ -84,8 +82,9 @@ PhaserGame.prototype = {
 
     this.fireButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.fireButton.onDown.add(this.fire, this);
-  },
-  fire: function () {
+  }
+
+  fire () {
     if (this.bullet.exists) {
       return;
     }
@@ -109,7 +108,7 @@ PhaserGame.prototype = {
 
            //  Our launch trajectory is based on the angle of the turret and the power
     this.physics.arcade.velocityFromRotation(this.turret.rotation, this.power, this.bullet.body.velocity);
-  },
+  }
 
        /**
         * Called by physics.arcade.overlap if the bullet and a target overlap
@@ -118,10 +117,10 @@ PhaserGame.prototype = {
         * @param {Phaser.Sprite} bullet - A reference to the bullet (same as this.bullet)
         * @param {Phaser.Sprite} target - The target the bullet hit
         */
-  hitTarget: function (bullet, target) {
+  hitTarget (bullet, target) {
     target.kill();
     this.removeBullet();
-  },
+  }
 
        /**
         * Removes the bullet, stops the camera following and tweens the camera back to the tank.
@@ -129,18 +128,18 @@ PhaserGame.prototype = {
         *
         * @method removeBullet
         */
-  removeBullet: function () {
+  removeBullet () {
     this.bullet.kill();
     this.camera.follow();
     this.add.tween(this.camera).to({ x: 0 }, 1000, 'Quint', true, 1000);
-  },
+  }
 
        /**
         * Core update loop. Handles collision checks and player input.
         *
         * @method update
         */
-  update: function () {
+  update () {
            //  If the bullet is in flight we don't let them control anything
     if (this.bullet.exists) {
       if (this.bullet.y > 420) {
@@ -168,5 +167,3 @@ PhaserGame.prototype = {
     }
   }
 };
-
-game.state.add('Game', PhaserGame, true);
