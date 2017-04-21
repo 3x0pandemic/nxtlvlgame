@@ -19,9 +19,9 @@ export default class Splash extends Phaser.State {
     this.load.image('tankButton', 'assets/star.png');
     this.load.image('tank', 'assets/tank.png');
     this.load.image('luigiButton', 'assets/star.png');
-    this.load.image('flappyButton', 'assets/star.png');
+    this.load.image('flappyButton', 'assets/bird.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
-    this.load.image('map', 'assets/map.png');
+    this.load.image('map', 'assets/sky.png');
     this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   }
 
