@@ -4199,6 +4199,7 @@ var Splash = function (_Phaser$State) {
 
     _this.text = '';
     _this.button = null;
+    _this.tank = null;
     _this.tankButton = null;
     _this.luigiButton = null;
     _this.flappyButton = null;
@@ -4211,7 +4212,8 @@ var Splash = function (_Phaser$State) {
     key: 'preload',
     value: function preload() {
       this.load.image('button', 'assets/star.png');
-      this.load.image('tankButton', 'assets/tank.png');
+      this.load.image('tankButton', 'assets/star.png');
+      this.load.image('tank', 'assets/tank.png');
       this.load.image('luigiButton', 'assets/star.png');
       this.load.image('flappyButton', 'assets/bird.png');
       this.load.image('mushroom', 'assets/images/mushroom2.png');
@@ -4221,8 +4223,12 @@ var Splash = function (_Phaser$State) {
   }, {
     key: 'create',
     value: function create() {
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
       this.background = this.add.sprite(0, 0, 'map');
-      this.playerMap = {};
+      this.tank = this.add.sprite(100, 100, 'tank');
+      this.physics.arcade.enable(this.tank);
+      this.tank.body.immovable = true;
+      this.tank.body.collideWorldBounds = true;
 
       // You can listen for each of these events from Phaser.Loader
       this.load.onLoadStart.add(this.loadStart, this);
@@ -4231,13 +4237,10 @@ var Splash = function (_Phaser$State) {
 
       // Just to kick things off
       this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-      this.tankButton = this.add.button(this.world.centerY - 50, 50, 'tankButton', this.goToTank, this, 2, 1, 0);
+      this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
       this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
       this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
-
-      // Progress report
-      this.text = this.add.text(32, 32, 'Click to start load', { fill: '#ffffff' });
-
+      this.text = this.add.text(32, 32, 'hello kitty', { fill: '#ffffff' });
       this.player = this.add.sprite(32, this.world.height - 150, 'dude');
       this.physics.arcade.enable(this.player);
       this.player.body.collideWorldBounds = true;
@@ -4253,6 +4256,7 @@ var Splash = function (_Phaser$State) {
     value: function update() {
       this.player.body.velocity.x = 0;
       this.player.body.velocity.y = 0;
+      this.physics.arcade.collide(this.button, this.dude);
 
       if (this.cursors.left.isDown) {
         //  Move to the left
@@ -4280,22 +4284,10 @@ var Splash = function (_Phaser$State) {
 
         this.player.frame = 4;
       }
+      if (this.physics.arcade.collide(this.player, this.tank)) {
+        this.goToTank();
+      }
     }
-
-    // reveal () {
-    //   this.load.image('picture1', 'assets/pics/mighty_no_09_cover_art_by_robduenas.jpg');
-    //   this.load.image('picture2', 'assets/pics/cougar_dragonsun.png');
-    //   this.load.image('picture3', 'assets/pics/trsipic1_lazur.jpg');
-    //   this.load.image('picture4', 'assets/pics/archmage_in_your_face.png');
-    //   this.load.image('picture5', 'assets/pics/acryl_bladerunner.png');
-    //   this.load.image('picture6', 'assets/pics/acryl_bobablast.png');
-    //   this.load.image('picture7', 'assets/pics/alex-bisleys_horsy_5.png');
-    //
-    //   this.load.start();
-    //
-    //   this.button.visible = false;
-    // }
-
   }, {
     key: 'goToGame',
     value: function goToGame() {
