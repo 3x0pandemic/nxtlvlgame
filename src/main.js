@@ -8,6 +8,7 @@ import SplashState from './states/Splash';
 import GameState from './states/Game';
 import TankState from './states/tank';
 import LuigiState from './states/luigi';
+import FlappyState from './states/flappy';
 import config from './config';
 
 class Game extends Phaser.Game {
@@ -23,6 +24,7 @@ class Game extends Phaser.Game {
     this.state.add('Game', GameState, false);
     this.state.add('Tank', TankState, false);
     this.state.add('Luigi', LuigiState, false);
+    this.state.add('Flappy', FlappyState, false);
 
     this.state.start('Boot');
   }

@@ -8,6 +8,7 @@ export default class Splash extends Phaser.State {
     this.button = null;
     this.tankButton = null;
     this.luigiButton = null;
+    this.flappyButton = null;
     this.x = 32;
     this.y = 80;
   }
@@ -16,6 +17,7 @@ export default class Splash extends Phaser.State {
     this.load.image('button', 'assets/star.png');
     this.load.image('tankButton', 'assets/tank.png');
     this.load.image('luigiButton', 'assets/star.png');
+    this.load.image('flappyButton', 'assets/star.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
   }
 
@@ -31,6 +33,7 @@ export default class Splash extends Phaser.State {
     this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
     this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
     this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
+    this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
 
     // Progress report
     this.text = this.add.text(32, 32, 'Click to start load', { fill: '#ffffff' });
@@ -60,6 +63,10 @@ export default class Splash extends Phaser.State {
 
   goToLuigi () {
     this.state.start('Luigi');
+  }
+
+  goToFlappy () {
+    this.state.start('Flappy');
   }
 
   loadStart () {
