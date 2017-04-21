@@ -37,13 +37,14 @@ export default class extends Phaser.State {
     this.load.image('background', 'assets/background.png');
     this.load.image('flame', 'assets/flame.png');
     this.load.image('target', 'assets/target.png');
-           //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
+    this.load.audio('hit', 'assets/nes-05-03.wav');
+  //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
 
   create () {
            //  Simple but pretty background
     this.background = this.add.sprite(0, 0, 'background');
-
+    this.hitSound = this.add.audio('hit');
    //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
 

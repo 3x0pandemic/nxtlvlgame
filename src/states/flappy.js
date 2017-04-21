@@ -10,6 +10,7 @@ export default class extends Phaser.State {
   preload () {
     this.load.image('bird', 'assets/frenz.jpg');
     this.load.image('pipe', 'assets/favicon.png');
+    this.load.image('sky', 'assets/sky.png');
     this.load.audio('jump', 'assets/jump_07.wav');
     this.load.audio('hit', 'assets/nes-05-03.wav');
   }
@@ -17,6 +18,8 @@ export default class extends Phaser.State {
   create () {
   // Change the background color of the game to blue
     this.stage.backgroundColor = '#4286f4';
+    this.add.sprite(0, 0, 'sky');
+  
     // Create an empty group
     this.pipes = this.add.group();
 
