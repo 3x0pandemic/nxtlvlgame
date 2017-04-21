@@ -19,7 +19,7 @@ export default class extends Phaser.State {
   // Change the background color of the game to blue
     this.stage.backgroundColor = '#4286f4';
     this.add.sprite(0, 0, 'sky');
-  
+
     // Create an empty group
     this.pipes = this.add.group();
 
