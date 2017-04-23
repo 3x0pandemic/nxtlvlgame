@@ -29,11 +29,11 @@ export default class extends Phaser.State {
   preload () {
            //  We need this because the assets are on Amazon S3
            //  Remove the next 2 lines if running locally
-    this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
-    this.load.crossOrigin = 'anonymous';
-    this.load.image('tank', 'assets/tank.png');
+    // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
+    // this.load.crossOrigin = 'anonymous';
+    this.load.image('tank', 'assets/bird.png');
     this.load.image('turret', 'assets/turret.png');
-    this.load.image('bullet', 'assets/bullet.png');
+    this.load.image('bullet', 'assets/frenz.jpg');
     this.load.image('background', 'assets/background.png');
     this.load.image('flame', 'assets/flame.png');
     this.load.image('target', 'assets/target.png');
@@ -86,6 +86,7 @@ export default class extends Phaser.State {
   }
 
   fire () {
+    this.hitSound.play();
     if (this.bullet.exists) {
       return;
     }

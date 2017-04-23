@@ -12,6 +12,7 @@ export default class Splash extends Phaser.State {
     this.flappyButton = null;
     this.x = 32;
     this.y = 80;
+    this.music = null;
   }
 
   preload () {
@@ -23,6 +24,8 @@ export default class Splash extends Phaser.State {
     this.load.image('mushroom', 'assets/images/mushroom2.png');
     this.load.image('map', 'assets/sky.png');
     this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.load.image('breakoutButton', 'assets/images/mushroom2.png');
+    this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
   }
 
   create () {
@@ -32,6 +35,10 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.enable(this.tank);
     this.tank.body.immovable = true;
     this.tank.body.collideWorldBounds = true;
+
+    this.music = this.add.audio('mainTitle');
+
+    this.music.play();
 
     // You can listen for each of these events from Phaser.Loader
     this.load.onLoadStart.add(this.loadStart, this);
@@ -43,7 +50,9 @@ export default class Splash extends Phaser.State {
     this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
     this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
     this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
-    this.text = this.add.text(32, 32, 'hello kitty', { fill: '#ffffff' });
+    this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
+
+    this.text = this.add.text({ fill: '#ffffff' });
     this.player = this.add.sprite(32, this.world.height - 150, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
@@ -93,18 +102,27 @@ export default class Splash extends Phaser.State {
 
   goToGame () {
     this.state.start('Game');
+    this.music.stop();
   }
 
   goToTank () {
     this.state.start('Tank');
+    this.music.stop();
   }
 
   goToLuigi () {
     this.state.start('Luigi');
+    this.music.stop();
   }
 
   goToFlappy () {
     this.state.start('Flappy');
+    this.music.stop();
+  }
+
+  goToBreakOut () {
+    this.state.start('BreakOut');
+    this.music.stop();
   }
 
   loadStart () {

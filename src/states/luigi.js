@@ -80,10 +80,10 @@ export default class extends Phaser.State {
       this.star = this.stars.create(i * 70, 0, 'star');
 
        //  Let gravity do its thing
-      this.star.body.gravity.y = 6;
+      this.star.body.gravity.y = 20;
 
       //  This just gives each star a slightly random bounce value
-      this.star.body.bounce.y = 0.7 + Math.random() * 0.2;
+      this.star.body.bounce.y = 0.3 + Math.random() * 0.2;
     }
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
   }

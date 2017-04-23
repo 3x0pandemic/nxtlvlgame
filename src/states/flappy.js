@@ -6,6 +6,7 @@ export default class extends Phaser.State {
   constructor () {
     super();
     this.pipes = null;
+    this.music = null;
   }
   preload () {
     this.load.image('bird', 'assets/frenz.jpg');
@@ -13,6 +14,7 @@ export default class extends Phaser.State {
     this.load.image('sky', 'assets/sky.png');
     this.load.audio('jump', 'assets/jump_07.wav');
     this.load.audio('hit', 'assets/nes-05-03.wav');
+    this.load.audio('music', 'assets/SouthPark.mp3');
   }
 
   create () {
@@ -25,6 +27,10 @@ export default class extends Phaser.State {
 
     this.jumpSound = this.add.audio('jump');
     this.hitSound = this.add.audio('hit');
+    this.dieSound = this.add.audio('hit');
+    this.music = this.add.audio('music');
+
+    this.music.play();
 
   // Set the physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
@@ -88,6 +94,8 @@ export default class extends Phaser.State {
   restartGame () {
     // Start the 'main' state, which restarts the game
     this.state.start('Flappy');
+    this.music.stop();
+    this.dieSound.play();
   }
   addOnePipe (x, y) {
     // Create a pipe at the position x and y
@@ -117,6 +125,9 @@ export default class extends Phaser.State {
     for (var i = 0; i < 20; i++) {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
+      }
+      if (this.score > 5) {
+        this.time.events.remove(this.timer);
       }
     }
   }
