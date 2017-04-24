@@ -15,6 +15,7 @@ export default class extends Phaser.State {
     this.powerText = null;
     this.cursors = null;
     this.fireButton = null;
+    this.targetCount = 4;
   }
 
   init () {
@@ -47,15 +48,6 @@ export default class extends Phaser.State {
     this.hitSound = this.add.audio('hit');
    //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
-
-    this.targets.create(300, 390, 'target');
-    this.targets.create(500, 390, 'target');
-    this.targets.create(700, 390, 'target');
-    this.targets.create(900, 390, 'target');
-
-   //  Stop gravity from pulling them away
-    this.targets.setAll('body.allowGravity', false);
-
    //  A single bullet that the tank will fire
     this.bullet = this.add.sprite(0, 0, 'bullet');
     this.bullet.exists = false;
@@ -83,6 +75,7 @@ export default class extends Phaser.State {
 
     this.fireButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.fireButton.onDown.add(this.fire, this);
+    this.resetGame();
   }
 
   fire () {
@@ -121,6 +114,7 @@ export default class extends Phaser.State {
   hitTarget (bullet, target) {
     target.kill();
     this.removeBullet();
+    this.targetCount = this.targetCount - 1;
   }
 
        /**
@@ -135,36 +129,56 @@ export default class extends Phaser.State {
     this.add.tween(this.camera).to({ x: 0 }, 1000, 'Quint', true, 1000);
   }
 
+  goHome () {
+    this.state.start('Boot');
+    this.resetGame();
+  }
+
+  resetGame () {
+    this.targets.removeAll(true);
+    this.targetCount = 4;
+    this.targets.create(300, 390, 'target');
+    this.targets.create(500, 390, 'target');
+    this.targets.create(700, 390, 'target');
+    this.targets.create(900, 390, 'target');
+
+    //  Stop gravity from pulling them away
+    this.targets.setAll('body.allowGravity', false);
+  }
+
        /**
         * Core update loop. Handles collision checks and player input.
         *
         * @method update
         */
   update () {
-           //  If the bullet is in flight we don't let them control anything
-    if (this.bullet.exists) {
-      if (this.bullet.y > 420) {
-                   //  Simple check to see if it's fallen too low
-        this.removeBullet();
+    if (this.targetCount > 0) {
+      if (this.bullet.exists) {
+        if (this.bullet.y > 420) {
+                     //  Simple check to see if it's fallen too low
+          this.removeBullet();
+        } else {
+                     //  Bullet vs. the Targets
+          this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+        }
       } else {
-                   //  Bullet vs. the Targets
-        this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+                 //  Allow them to set the power between 100 and 600
+        if (this.cursors.left.isDown && this.power > 100) {
+          this.power -= 2;
+        } else if (this.cursors.right.isDown && this.power < 600) {
+          this.power += 2;
+        }
+                 //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
+        if (this.cursors.up.isDown && this.turret.angle > -90) {
+          this.turret.angle--;
+        } else if (this.cursors.down.isDown && this.turret.angle < 0) {
+          this.turret.angle++;
+        }
+                 //  Update the text
+        this.powerText.text = 'Power: ' + this.power;
       }
     } else {
-               //  Allow them to set the power between 100 and 600
-      if (this.cursors.left.isDown && this.power > 100) {
-        this.power -= 2;
-      } else if (this.cursors.right.isDown && this.power < 600) {
-        this.power += 2;
-      }
-               //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
-      if (this.cursors.up.isDown && this.turret.angle > -90) {
-        this.turret.angle--;
-      } else if (this.cursors.down.isDown && this.turret.angle < 0) {
-        this.turret.angle++;
-      }
-               //  Update the text
-      this.powerText.text = 'Power: ' + this.power;
+      this.goHome();
     }
   }
 };

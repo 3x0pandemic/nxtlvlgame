@@ -9,6 +9,7 @@ import GameState from './states/Game';
 import TankState from './states/tank';
 import LuigiState from './states/luigi';
 import FlappyState from './states/flappy';
+
 import config from './config';
 
 class Game extends Phaser.Game {

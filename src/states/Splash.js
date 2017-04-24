@@ -5,8 +5,12 @@ export default class Splash extends Phaser.State {
   constructor () {
     super();
     this.text = '';
+    this.rock = null;
     this.button = null;
     this.tank = null;
+    this.bird = null;
+    this.luigi = null;
+    this.mushroom = null;
     this.tankButton = null;
     this.luigiButton = null;
     this.flappyButton = null;
@@ -18,20 +22,60 @@ export default class Splash extends Phaser.State {
     this.load.image('button', 'assets/star.png');
     this.load.image('tankButton', 'assets/star.png');
     this.load.image('tank', 'assets/tank.png');
+    this.load.image('bird', 'assets/bird.png');
+    this.load.image('luigi', 'assets/luigi.png');
+    this.load.image('mushroom', 'assets/mushroom.png');
     this.load.image('luigiButton', 'assets/star.png');
     this.load.image('flappyButton', 'assets/bird.png');
+    this.load.image('rock', 'assets/rock.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
-    this.load.image('map', 'assets/sky.png');
+    this.load.image('map', 'assets/grass.png');
     this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   }
 
   create () {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.background = this.add.sprite(0, 0, 'map');
+
+    this.rock = this.add.sprite(0, 200, 'rock');
+    this.physics.arcade.enable(this.rock);
+    this.rock.body.immovable = true;
+    this.rock.body.collideWorldBounds = true;
+
+    this.rock = this.add.sprite(0, 240, 'rock');
+    this.physics.arcade.enable(this.rock);
+    this.rock.body.immovable = true;
+    this.rock.body.collideWorldBounds = true;
+
+    this.rock = this.add.sprite(0, 280, 'rock');
+    this.physics.arcade.enable(this.rock);
+    this.rock.body.immovable = true;
+    this.rock.body.collideWorldBounds = true;
+
+    this.rock = this.add.sprite(0, 320, 'rock');
+    this.physics.arcade.enable(this.rock);
+    this.rock.body.immovable = true;
+    this.rock.body.collideWorldBounds = true;
+
     this.tank = this.add.sprite(100, 100, 'tank');
     this.physics.arcade.enable(this.tank);
     this.tank.body.immovable = true;
     this.tank.body.collideWorldBounds = true;
+
+    this.bird = this.add.sprite(600, 100, 'bird');
+    this.physics.arcade.enable(this.bird);
+    this.bird.body.immovable = true;
+    this.bird.body.collideWorldBounds = true;
+
+    this.luigi = this.add.sprite(100, 400, 'luigi');
+    this.physics.arcade.enable(this.luigi);
+    this.luigi.body.immovable = true;
+    this.luigi.body.collideWorldBounds = true;
+
+    this.mushroom = this.add.sprite(600, 400, 'mushroom');
+    this.physics.arcade.enable(this.mushroom);
+    this.mushroom.body.immovable = true;
+    this.mushroom.body.collideWorldBounds = true;
 
     // You can listen for each of these events from Phaser.Loader
     this.load.onLoadStart.add(this.loadStart, this);
@@ -40,11 +84,8 @@ export default class Splash extends Phaser.State {
 
     // Just to kick things off
     this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-    this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
-    this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
-    this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
     this.text = this.add.text(32, 32, 'hello kitty', { fill: '#ffffff' });
-    this.player = this.add.sprite(32, this.world.height - 150, 'dude');
+    this.player = this.add.sprite(50, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
@@ -88,6 +129,15 @@ export default class Splash extends Phaser.State {
     }
     if (this.physics.arcade.collide(this.player, this.tank)) {
       this.goToTank();
+    }
+    if (this.physics.arcade.collide(this.player, this.bird)) {
+      this.goToFlappy();
+    }
+    if (this.physics.arcade.collide(this.player, this.mushroom)) {
+      this.goToGame();
+    }
+    if (this.physics.arcade.collide(this.player, this.luigi)) {
+      this.goToLuigi();
     }
   }
 

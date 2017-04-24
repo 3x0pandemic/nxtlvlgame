@@ -4198,8 +4198,12 @@ var Splash = function (_Phaser$State) {
     var _this = _possibleConstructorReturn(this, (Splash.__proto__ || Object.getPrototypeOf(Splash)).call(this));
 
     _this.text = '';
+    _this.rock = null;
     _this.button = null;
     _this.tank = null;
+    _this.bird = null;
+    _this.luigi = null;
+    _this.mushroom = null;
     _this.tankButton = null;
     _this.luigiButton = null;
     _this.flappyButton = null;
@@ -4214,10 +4218,14 @@ var Splash = function (_Phaser$State) {
       this.load.image('button', 'assets/star.png');
       this.load.image('tankButton', 'assets/star.png');
       this.load.image('tank', 'assets/tank.png');
+      this.load.image('bird', 'assets/bird.png');
+      this.load.image('luigi', 'assets/luigi.png');
+      this.load.image('mushroom', 'assets/mushroom.png');
       this.load.image('luigiButton', 'assets/star.png');
       this.load.image('flappyButton', 'assets/bird.png');
+      this.load.image('rock', 'assets/rock.png');
       this.load.image('mushroom', 'assets/images/mushroom2.png');
-      this.load.image('map', 'assets/sky.png');
+      this.load.image('map', 'assets/grass.png');
       this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     }
   }, {
@@ -4225,10 +4233,46 @@ var Splash = function (_Phaser$State) {
     value: function create() {
       this.physics.startSystem(_phaser2.default.Physics.ARCADE);
       this.background = this.add.sprite(0, 0, 'map');
+
+      this.rock = this.add.sprite(0, 200, 'rock');
+      this.physics.arcade.enable(this.rock);
+      this.rock.body.immovable = true;
+      this.rock.body.collideWorldBounds = true;
+
+      this.rock = this.add.sprite(0, 240, 'rock');
+      this.physics.arcade.enable(this.rock);
+      this.rock.body.immovable = true;
+      this.rock.body.collideWorldBounds = true;
+
+      this.rock = this.add.sprite(0, 280, 'rock');
+      this.physics.arcade.enable(this.rock);
+      this.rock.body.immovable = true;
+      this.rock.body.collideWorldBounds = true;
+
+      this.rock = this.add.sprite(0, 320, 'rock');
+      this.physics.arcade.enable(this.rock);
+      this.rock.body.immovable = true;
+      this.rock.body.collideWorldBounds = true;
+
       this.tank = this.add.sprite(100, 100, 'tank');
       this.physics.arcade.enable(this.tank);
       this.tank.body.immovable = true;
       this.tank.body.collideWorldBounds = true;
+
+      this.bird = this.add.sprite(600, 100, 'bird');
+      this.physics.arcade.enable(this.bird);
+      this.bird.body.immovable = true;
+      this.bird.body.collideWorldBounds = true;
+
+      this.luigi = this.add.sprite(100, 400, 'luigi');
+      this.physics.arcade.enable(this.luigi);
+      this.luigi.body.immovable = true;
+      this.luigi.body.collideWorldBounds = true;
+
+      this.mushroom = this.add.sprite(600, 400, 'mushroom');
+      this.physics.arcade.enable(this.mushroom);
+      this.mushroom.body.immovable = true;
+      this.mushroom.body.collideWorldBounds = true;
 
       // You can listen for each of these events from Phaser.Loader
       this.load.onLoadStart.add(this.loadStart, this);
@@ -4237,11 +4281,8 @@ var Splash = function (_Phaser$State) {
 
       // Just to kick things off
       this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-      this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
-      this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
-      this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
       this.text = this.add.text(32, 32, 'hello kitty', { fill: '#ffffff' });
-      this.player = this.add.sprite(32, this.world.height - 150, 'dude');
+      this.player = this.add.sprite(50, 250, 'dude');
       this.physics.arcade.enable(this.player);
       this.player.body.collideWorldBounds = true;
 
@@ -4286,6 +4327,15 @@ var Splash = function (_Phaser$State) {
       }
       if (this.physics.arcade.collide(this.player, this.tank)) {
         this.goToTank();
+      }
+      if (this.physics.arcade.collide(this.player, this.bird)) {
+        this.goToFlappy();
+      }
+      if (this.physics.arcade.collide(this.player, this.mushroom)) {
+        this.goToGame();
+      }
+      if (this.physics.arcade.collide(this.player, this.luigi)) {
+        this.goToLuigi();
       }
     }
   }, {
@@ -4662,12 +4712,13 @@ var _class = function (_Phaser$State) {
         this.star = this.stars.create(i * 70, 0, 'star');
 
         //  Let gravity do its thing
-        this.star.body.gravity.y = 6;
+        this.star.body.gravity.y = 200;
 
         //  This just gives each star a slightly random bounce value
-        this.star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
       }
       this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+      this.resetGame();
     }
   }, {
     key: 'update',
@@ -4710,7 +4761,20 @@ var _class = function (_Phaser$State) {
   }, {
     key: 'goHome',
     value: function goHome() {
-      this.state.start('Splash');
+      this.state.start('Boot');
+      this.resetGame();
+    }
+  }, {
+    key: 'resetGame',
+    value: function resetGame() {
+      this.stars.removeAll(true);
+      this.score = 0;
+      this.stars.enableBody = true;
+      for (var i = 0; i < 12; i++) {
+        this.star = this.stars.create(i * 70, 0, 'star');
+        this.star.body.gravity.y = 200;
+        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
+      }
     }
   }]);
 
@@ -4771,6 +4835,7 @@ var _class = function (_Phaser$State) {
     _this.powerText = null;
     _this.cursors = null;
     _this.fireButton = null;
+    _this.targetCount = 4;
     return _this;
   }
 
@@ -4808,15 +4873,6 @@ var _class = function (_Phaser$State) {
       this.hitSound = this.add.audio('hit');
       //  Something to shoot at :)
       this.targets = this.add.group(this.game.world, 'targets', false, true, _phaser2.default.Physics.ARCADE);
-
-      this.targets.create(300, 390, 'target');
-      this.targets.create(500, 390, 'target');
-      this.targets.create(700, 390, 'target');
-      this.targets.create(900, 390, 'target');
-
-      //  Stop gravity from pulling them away
-      this.targets.setAll('body.allowGravity', false);
-
       //  A single bullet that the tank will fire
       this.bullet = this.add.sprite(0, 0, 'bullet');
       this.bullet.exists = false;
@@ -4844,6 +4900,7 @@ var _class = function (_Phaser$State) {
 
       this.fireButton = this.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
       this.fireButton.onDown.add(this.fire, this);
+      this.resetGame();
     }
   }, {
     key: 'fire',
@@ -4886,6 +4943,7 @@ var _class = function (_Phaser$State) {
     value: function hitTarget(bullet, target) {
       target.kill();
       this.removeBullet();
+      this.targetCount = this.targetCount - 1;
     }
 
     /**
@@ -4902,6 +4960,25 @@ var _class = function (_Phaser$State) {
       this.camera.follow();
       this.add.tween(this.camera).to({ x: 0 }, 1000, 'Quint', true, 1000);
     }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('Boot');
+      this.resetGame();
+    }
+  }, {
+    key: 'resetGame',
+    value: function resetGame() {
+      this.targets.removeAll(true);
+      this.targetCount = 4;
+      this.targets.create(300, 390, 'target');
+      this.targets.create(500, 390, 'target');
+      this.targets.create(700, 390, 'target');
+      this.targets.create(900, 390, 'target');
+
+      //  Stop gravity from pulling them away
+      this.targets.setAll('body.allowGravity', false);
+    }
 
     /**
      * Core update loop. Handles collision checks and player input.
@@ -4912,30 +4989,33 @@ var _class = function (_Phaser$State) {
   }, {
     key: 'update',
     value: function update() {
-      //  If the bullet is in flight we don't let them control anything
-      if (this.bullet.exists) {
-        if (this.bullet.y > 420) {
-          //  Simple check to see if it's fallen too low
-          this.removeBullet();
+      if (this.targetCount > 0) {
+        if (this.bullet.exists) {
+          if (this.bullet.y > 420) {
+            //  Simple check to see if it's fallen too low
+            this.removeBullet();
+          } else {
+            //  Bullet vs. the Targets
+            this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+          }
         } else {
-          //  Bullet vs. the Targets
-          this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+          //  Allow them to set the power between 100 and 600
+          if (this.cursors.left.isDown && this.power > 100) {
+            this.power -= 2;
+          } else if (this.cursors.right.isDown && this.power < 600) {
+            this.power += 2;
+          }
+          //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
+          if (this.cursors.up.isDown && this.turret.angle > -90) {
+            this.turret.angle--;
+          } else if (this.cursors.down.isDown && this.turret.angle < 0) {
+            this.turret.angle++;
+          }
+          //  Update the text
+          this.powerText.text = 'Power: ' + this.power;
         }
       } else {
-        //  Allow them to set the power between 100 and 600
-        if (this.cursors.left.isDown && this.power > 100) {
-          this.power -= 2;
-        } else if (this.cursors.right.isDown && this.power < 600) {
-          this.power += 2;
-        }
-        //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
-        if (this.cursors.up.isDown && this.turret.angle > -90) {
-          this.turret.angle--;
-        } else if (this.cursors.down.isDown && this.turret.angle < 0) {
-          this.turret.angle++;
-        }
-        //  Update the text
-        this.powerText.text = 'Power: ' + this.power;
+        this.goHome();
       }
     }
   }]);
