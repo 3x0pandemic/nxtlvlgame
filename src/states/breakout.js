@@ -11,22 +11,22 @@ export default class extends Phaser.State {
   }
   preload () {
     this.load.image('paddle', 'assets/paddle.png');
-    this.load.image('brick', 'assets/frenz.jpg');
-    this.load.image('sky', 'assets/sky.png');
+    this.load.image('brick', 'assets/star.png');
+    this.load.image('sky', 'assets/desktop-background.png');
     this.load.image('ball', 'assets/ball.png');
     this.load.audio('hit', 'assets/nes-05-03.wav');
     this.load.audio('music', 'assets/StElmo.mp3');
   }
 
   create () {
-    this.stage.backgroundColor = '#3598db';
+    this.stage.backgroundColor = '#4F77A2';
     this.add.sprite(0, 0, 'sky');
     this.hitSound = this.add.audio('hit');
 
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
 
 // Start the Arcade physics system (for movements and collisions)
     this.physics.startSystem(Phaser.Physics.ARCADE);
@@ -43,7 +43,7 @@ export default class extends Phaser.State {
     this.bricks = this.add.group();
 
     for (var i = 0; i < 12; i++) {
-      for (var j = 0; j < 8; j++) {
+      for (var j = 0; j < 6; j++) {
           // Create the brick at the correct position
         var brick = this.add.sprite(55 + i * 60, 55 + j * 35, 'brick');
 
@@ -54,7 +54,7 @@ export default class extends Phaser.State {
         this.bricks.add(brick);
       }
     }
-    this.ball = this.add.sprite(200, 300, 'ball');
+    this.ball = this.add.sprite(200, 500, 'ball');
 
     // Give the ball some initial speed
     this.ball.body.velocity.x = 200;
@@ -80,6 +80,7 @@ export default class extends Phaser.State {
     if (this.ball.y > this.paddle.y) {
       this.state.start('BreakOut');
       this.music.stop();
+      this.score = 0;
     }
   }
 

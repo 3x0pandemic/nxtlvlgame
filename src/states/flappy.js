@@ -19,7 +19,7 @@ export default class extends Phaser.State {
 
   create () {
   // Change the background color of the game to blue
-    this.stage.backgroundColor = '#4286f4';
+    this.stage.backgroundColor = '#48A0D0';
     this.add.sprite(0, 0, 'sky');
 
     // Create an empty group
@@ -100,16 +100,12 @@ export default class extends Phaser.State {
   addOnePipe (x, y) {
     // Create a pipe at the position x and y
     this.pipe = this.add.sprite(x, y, 'pipe');
-
     // Add the pipe to our previously created group
     this.pipes.add(this.pipe);
-
     // Enable physics on the pipe
     this.physics.arcade.enable(this.pipe);
-
     // Add velocity to the pipe to make it move left
     this.pipe.body.velocity.x = -200;
-
     // Automatically kill the pipe when it's no longer visible
     this.pipe.checkWorldBounds = true;
     this.pipe.outOfBoundsKill = true;

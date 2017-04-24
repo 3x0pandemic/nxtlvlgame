@@ -90,21 +90,21 @@ export default class extends Phaser.State {
 
   update () {
     if (this.score < 120) {
-      //  Collide the player and the stars with the platforms
+       //  Collide the player and the stars with the platforms
       this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
-      //  Reset the players velocity (movement)
+       //  Reset the players velocity (movement)
       this.player.body.velocity.x = 0;
 
       if (this.cursors.left.isDown) {
-           //  Move to the left
+            //  Move to the left
         this.player.body.velocity.x = -150;
         this.player.animations.play('left');
       } else if (this.cursors.right.isDown) {
-           //  Move to the right
+            //  Move to the right
         this.player.body.velocity.x = 150;
         this.player.animations.play('right');
       } else {
-           //  Stand still
+            //  Stand still
         this.player.animations.stop();
         this.player.frame = 4;
       }

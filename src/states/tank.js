@@ -141,31 +141,34 @@ export default class extends Phaser.State {
         *
         * @method update
         */
+
   update () {
-           //  If the bullet is in flight we don't let them control anything
-    if (this.bullet.exists) {
-      if (this.bullet.y > 420) {
-                   //  Simple check to see if it's fallen too low
-        this.removeBullet();
+    //  If the bullet is in flight we don't let them control anything
+    if (this.targetCount > 0) {
+      if (this.bullet.exists) {
+        if (this.bullet.y > 420) {
+          //  Simple check to see if it's fallen too low
+          this.removeBullet();
+        } else {
+          //  Bullet vs. the Targets
+          this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+        }
       } else {
-                   //  Bullet vs. the Targets
-        this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+        //  Allow them to set the power between 100 and 600
+        if (this.cursors.left.isDown && this.power > 100) {
+          this.power -= 2;
+        } else if (this.cursors.right.isDown && this.power < 600) {
+          this.power += 2;
+        }
+        //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
+        if (this.cursors.up.isDown && this.turret.angle > -90) {
+          this.turret.angle--;
+        } else if (this.cursors.down.isDown && this.turret.angle < 0) {
+          this.turret.angle++;
+        }
+        //  Update the text
+        this.powerText.text = 'Power: ' + this.power;
       }
-    } else {
-               //  Allow them to set the power between 100 and 600
-      if (this.cursors.left.isDown && this.power > 100) {
-        this.power -= 2;
-      } else if (this.cursors.right.isDown && this.power < 600) {
-        this.power += 2;
-      }
-               //  Allow them to set the angle, between -90 (straight up) and 0 (facing to the right)
-      if (this.cursors.up.isDown && this.turret.angle > -90) {
-        this.turret.angle--;
-      } else if (this.cursors.down.isDown && this.turret.angle < 0) {
-        this.turret.angle++;
-      }
-               //  Update the text
-      this.powerText.text = 'Power: ' + this.power;
     }
   }
 };
