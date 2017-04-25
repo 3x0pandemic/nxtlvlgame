@@ -24,6 +24,7 @@ export default class Splash extends Phaser.State {
     this.load.image('tankButton', 'assets/star.png');
     this.load.image('tank', 'assets/tank.png');
     this.load.image('bird', 'assets/bird.png');
+    this.load.image('brick', 'assets/brick.png');
     this.load.image('luigi', 'assets/luigi.png');
     this.load.image('mushroom', 'assets/mushroom.png');
     this.load.image('luigiButton', 'assets/star.png');
@@ -31,7 +32,7 @@ export default class Splash extends Phaser.State {
     this.load.image('rock', 'assets/rock.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
     this.load.image('map', 'assets/grass.png');
-    this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.load.image('dude', 'assets/sprite.png');
     this.load.image('breakoutButton', 'assets/images/mushroom2.png');
     this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
   }
@@ -40,25 +41,25 @@ export default class Splash extends Phaser.State {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.background = this.add.sprite(0, 0, 'map');
 
-    this.rock = this.add.sprite(0, 200, 'rock');
-    this.physics.arcade.enable(this.rock);
-    this.rock.body.immovable = true;
-    this.rock.body.collideWorldBounds = true;
+    this.rock1 = this.add.sprite(20, 200, 'rock');
+    this.physics.arcade.enable(this.rock1);
+    this.rock1.body.immovable = true;
+    this.rock1.body.collideWorldBounds = true;
 
-    this.rock = this.add.sprite(0, 240, 'rock');
-    this.physics.arcade.enable(this.rock);
-    this.rock.body.immovable = true;
-    this.rock.body.collideWorldBounds = true;
+    this.rock2 = this.add.sprite(100, 240, 'rock');
+    this.physics.arcade.enable(this.rock2);
+    this.rock2.body.immovable = true;
+    this.rock2.body.collideWorldBounds = true;
 
-    this.rock = this.add.sprite(0, 280, 'rock');
-    this.physics.arcade.enable(this.rock);
-    this.rock.body.immovable = true;
-    this.rock.body.collideWorldBounds = true;
+    this.rock3 = this.add.sprite(600, 280, 'rock');
+    this.physics.arcade.enable(this.rock3);
+    this.rock3.body.immovable = true;
+    this.rock3.body.collideWorldBounds = true;
 
-    this.rock = this.add.sprite(0, 320, 'rock');
-    this.physics.arcade.enable(this.rock);
-    this.rock.body.immovable = true;
-    this.rock.body.collideWorldBounds = true;
+    this.rock4 = this.add.sprite(250, 320, 'rock');
+    this.physics.arcade.enable(this.rock4);
+    this.rock4.body.immovable = true;
+    this.rock4.body.collideWorldBounds = true;
 
     this.tank = this.add.sprite(100, 100, 'tank');
     this.physics.arcade.enable(this.tank);
@@ -79,10 +80,15 @@ export default class Splash extends Phaser.State {
     this.luigi.body.immovable = true;
     this.luigi.body.collideWorldBounds = true;
 
-    this.mushroom = this.add.sprite(600, 400, 'mushroom');
-    this.physics.arcade.enable(this.mushroom);
-    this.mushroom.body.immovable = true;
-    this.mushroom.body.collideWorldBounds = true;
+    // this.mushroom = this.add.sprite(600, 400, 'mushroom');
+    // this.physics.arcade.enable(this.mushroom);
+    // this.mushroom.body.immovable = true;
+    // this.mushroom.body.collideWorldBounds = true;
+
+    this.brick = this.add.sprite(600, 400, 'brick');
+    this.physics.arcade.enable(this.brick);
+    this.brick.body.immovable = true;
+    this.brick.body.collideWorldBounds = true;
 
     // You can listen for each of these events from Phaser.Loader
     this.load.onLoadStart.add(this.loadStart, this);
@@ -90,28 +96,28 @@ export default class Splash extends Phaser.State {
     this.load.onLoadComplete.add(this.loadComplete, this);
 
     // Just to kick things off
-    this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
+    // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
     // this.tankButton = this.add.button(this.world.centerY - 100, 500, 'tankButton', this.goToTank, this, 2, 1, 0);
     // this.luigiButton = this.add.button(this.world.centerY - 100, 400, 'luigiButton', this.goToLuigi, this, 2, 1, 0);
     // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
-    this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
+    // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
 
     this.text = this.add.text({ fill: '#ffffff' });
-    this.player = this.add.sprite(50, 250, 'dude');
+    this.player = this.add.sprite(350, 250, 'dude');
     this.physics.arcade.enable(this.player);
     this.player.body.collideWorldBounds = true;
 
-    this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-    this.player.animations.add('right', [5, 6, 7, 8], 10, true);
-    this.player.animations.add('up', [0, 1, 2, 3], 10, true);
-    this.player.animations.add('down', [5, 6, 7, 8], 10, true);
+    // this.player.animations.add('left', [0, 1, 2, 3], 10, true);
+    // this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    // this.player.animations.add('up', [0, 1, 2, 3], 10, true);
+    // this.player.animations.add('down', [5, 6, 7, 8], 10, true);
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   update () {
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
-    this.physics.arcade.collide(this.button, this.dude);
+    // this.physics.arcade.collide(this.button, this.dude);
 
     if (this.cursors.left.isDown) {
       //  Move to the left
@@ -145,12 +151,19 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.bird)) {
       this.goToFlappy();
     }
-    if (this.physics.arcade.collide(this.player, this.mushroom)) {
-      this.goToGame();
-    }
+    // if (this.physics.arcade.collide(this.player, this.mushroom)) {
+    //   this.goToGame();
+    // }
     if (this.physics.arcade.collide(this.player, this.luigi)) {
       this.goToLuigi();
     }
+    if (this.physics.arcade.collide(this.player, this.brick)) {
+      this.goToBreakOut();
+    }
+    this.physics.arcade.collide(this.player, this.rock1);
+    this.physics.arcade.collide(this.player, this.rock2);
+    this.physics.arcade.collide(this.player, this.rock3);
+    this.physics.arcade.collide(this.player, this.rock4);
   }
 
   goToGame () {

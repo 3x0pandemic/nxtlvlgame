@@ -11,7 +11,7 @@ export default class extends Phaser.State {
   }
   preload () {
     this.load.image('paddle', 'assets/paddle.png');
-    this.load.image('brick', 'assets/star.png');
+    this.load.image('brick', 'assets/brick.png');
     this.load.image('sky', 'assets/desktop-background.png');
     this.load.image('ball', 'assets/ball.png');
     this.load.audio('hit', 'assets/nes-05-03.wav');
@@ -36,6 +36,7 @@ export default class extends Phaser.State {
 
     this.left = this.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     this.right = this.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
     this.paddle = this.add.sprite(200, 550, 'paddle');
     this.paddle.body.immovable = true;
     this.paddle.body.collideWorldBounds = true;
@@ -65,6 +66,10 @@ export default class extends Phaser.State {
     this.ball.body.collideWorldBounds = true;
   }
   update () {
+    if (this.escape.isDown) {
+      this.goHome();
+    }
+
     if (this.left.isDown) {
       this.paddle.body.velocity.x = -300;
     } else if (this.right.isDown) {
@@ -90,5 +95,9 @@ export default class extends Phaser.State {
     this.hitSound.play();
     this.score += 10;
     this.scoreText.text = 'Score: ' + this.score;
+  }
+  goHome () {
+    this.state.start('Boot');
+    // this.resetGame();
   }
 };

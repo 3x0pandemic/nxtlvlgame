@@ -72,6 +72,7 @@ export default class extends Phaser.State {
 
    //  Some basic controls
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
     this.fireButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.fireButton.onDown.add(this.fire, this);
@@ -154,7 +155,9 @@ export default class extends Phaser.State {
         */
 
   update () {
-    if (this.targetCount > 0) {
+    if (this.escape.isDown) {
+      this.goHome();
+    } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 420) {
                      //  Simple check to see if it's fallen too low

@@ -49,6 +49,7 @@ export default class extends Phaser.State {
     var spaceKey = this.input.keyboard.addKey(
                   Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
     this.timer = this.time.events.loop(1500, this.addRowOfPipes, this);
     this.score = 0;
@@ -60,9 +61,11 @@ export default class extends Phaser.State {
   }
 
   update () {
+    if (this.escape.isDown) {
+      this.goHome();
       // If the bird is out of the screen (too high or too low)
       // Call the 'restartGame' function
-    if (this.bird.y < 0 || this.bird.y > 800) {
+    } else if (this.bird.y < 0 || this.bird.y > 800) {
       this.restartGame();
     }
     this.physics.arcade.overlap(
@@ -144,5 +147,9 @@ export default class extends Phaser.State {
       p.body.velocity.x = 0;
     }, this);
     this.hitSound.play();
+  }
+  goHome () {
+    this.state.start('Boot');
+    // this.resetGame();
   }
 }

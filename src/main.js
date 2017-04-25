@@ -6,10 +6,10 @@ import Phaser from 'phaser';
 import BootState from './states/Boot';
 import SplashState from './states/Splash';
 import GameState from './states/Game';
-import TankState from './states/tank';
-import LuigiState from './states/luigi';
-import FlappyState from './states/flappy';
-import BreakOutState from './states/breakout';
+import TankState from './states/Tank';
+import LuigiState from './states/Luigi';
+import FlappyState from './states/Flappy';
+import BreakOutState from './states/Breakout';
 
 import config from './config';
 
