@@ -10,7 +10,7 @@ import TankState from './states/Tank';
 import LuigiState from './states/Luigi';
 import FlappyState from './states/Flappy';
 import BreakOutState from './states/Breakout';
-
+import Menu from './states/Menu';
 import config from './config';
 
 class Game extends Phaser.Game {
@@ -21,6 +21,8 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
+    this.score = 0;
+
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
@@ -28,8 +30,13 @@ class Game extends Phaser.Game {
     this.state.add('Luigi', LuigiState, false);
     this.state.add('Flappy', FlappyState, false);
     this.state.add('BreakOut', BreakOutState, false);
+    this.state.add('Menu', Menu, false);
 
     this.state.start('Boot');
+  }
+  playerScore () {
+    this.score++;
+    console.log(this.score);
   }
 }
 

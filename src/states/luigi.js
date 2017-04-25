@@ -14,6 +14,7 @@ export default class extends Phaser.State {
     this.score = 0;
     this.scoreText = null;
     this.paused = false;
+    this.luigiScore = 0;
   }
 
   preload () {
@@ -71,6 +72,7 @@ export default class extends Phaser.State {
     //  Our two animations, walking left and right.
     this.player.animations.add('left', [0, 1, 2, 3], 10, true);
     this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    this.stage.disableVisibilityChange = true;
 
     //  Our controls.
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -96,6 +98,7 @@ export default class extends Phaser.State {
     }
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     this.resetGame();
+    console.log(this.luigiScore);
   }
 
   update () {
@@ -136,6 +139,8 @@ export default class extends Phaser.State {
       this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
     } else {
       this.goHome();
+      this.playerUpdate();
+      console.log(this.luigiScore);
     }
     function collectStar (player, star) {
       star.kill();
@@ -144,8 +149,15 @@ export default class extends Phaser.State {
     }
   }
 
-  destroyMenu (menu) {
-    this.menu.destroy();
+  playerUpdate () {
+    window.game.playerScore();
+    if (this.luigiScore === 0 || this.luigiScore > 1) {
+      this.luigiScore = this.luigiScore + 1;
+    }
+  }
+
+  goMenu (menu) {
+    this.state.start('Menu');
   }
 
   goHome () {

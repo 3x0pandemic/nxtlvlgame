@@ -41,6 +41,15 @@ export default class Splash extends Phaser.State {
     this.physics.startSystem(Phaser.Physics.ARCADE);
     this.background = this.add.sprite(0, 0, 'map');
 
+    // this.rocks = this.add.group();
+    // this.rocks.create(20, 200, 'rock');
+    // this.rocks.create(100, 240, 'rock');
+    // this.rocks.create(600, 280, 'rock');
+    // this.rocks.create(250, 320, 'rock');
+    // this.rocks.setAll('immovable', true);
+    // this.rocks.setAll('collideWorldBounds', true);
+    // this.physics.arcade.enable(this.rocks);
+
     this.rock1 = this.add.sprite(20, 200, 'rock');
     this.physics.arcade.enable(this.rock1);
     this.rock1.body.immovable = true;
@@ -172,7 +181,7 @@ export default class Splash extends Phaser.State {
   }
 
   goToTank () {
-    this.state.start('Tank');
+    this.state.start('Menu');
     this.music.stop();
   }
 
