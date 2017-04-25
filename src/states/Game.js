@@ -15,6 +15,7 @@ export default class extends Phaser.State {
     banner.fill = '#77BFA3';
     banner.smoothed = false;
     banner.anchor.setTo(0.5);
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
     this.mushroom = new Mushroom({
       game: this,
@@ -24,6 +25,15 @@ export default class extends Phaser.State {
     });
 
     this.game.add.existing(this.mushroom);
+  }
+  update () {
+    if (this.escape.isDown) {
+      this.goHome();
+    }
+  }
+  goHome () {
+    this.state.start('Boot');
+    // this.resetGame();
   }
 
   render () {

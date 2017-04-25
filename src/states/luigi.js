@@ -6,16 +6,20 @@ export default class extends Phaser.State {
   constructor () {
     super();
     this.cursors = null;
+    this.menu = null;
     this.player = null;
     this.platforms = null;
     this.star = null;
     this.stars = null;
     this.score = 0;
     this.scoreText = null;
+    this.paused = false;
   }
 
   preload () {
     this.load.image('sky', 'assets/sky.png');
+    this.load.image('menu', 'assets/menubar.png');
+    this.load.image('dude2', 'assets/sprite.png');
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
@@ -67,9 +71,14 @@ export default class extends Phaser.State {
     //  Our two animations, walking left and right.
     this.player.animations.add('left', [0, 1, 2, 3], 10, true);
     this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+    this.stage.disableVisibilityChange = true;
 
     //  Our controls.
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
+    this.pause = this.input.keyboard.addKey(Phaser.Keyboard.P);
+    this.unpause = this.input.keyboard.addKey(Phaser.Keyboard.S);
+
     this.stars = this.add.group();
 
     this.stars.enableBody = true;
@@ -91,7 +100,16 @@ export default class extends Phaser.State {
   }
 
   update () {
-    if (this.score < 120) {
+    if (this.pause.isDown) {
+      this.physics.arcade.isPaused = true;
+    }
+    if (this.unpause.isDown) {
+      this.physics.arcade.isPaused = false;
+    }
+
+    if (this.escape.isDown) {
+      this.goHome();
+    } else if (this.score < 120) {
        //  Collide the player and the stars with the platforms
       this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
        //  Reset the players velocity (movement)
@@ -119,6 +137,7 @@ export default class extends Phaser.State {
       this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
     } else {
       this.goHome();
+      this.playerUpdate();
     }
     function collectStar (player, star) {
       star.kill();
@@ -127,10 +146,19 @@ export default class extends Phaser.State {
     }
   }
 
+  playerUpdate () {
+    window.game.luigiCompleted();
+  }
+
+  goMenu (menu) {
+    this.state.start('Menu');
+  }
+
   goHome () {
     this.state.start('Boot');
     this.resetGame();
   }
+
   resetGame () {
     this.stars.removeAll(true);
     this.score = 0;

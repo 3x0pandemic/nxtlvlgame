@@ -16,6 +16,7 @@ export default class extends Phaser.State {
     this.cursors = null;
     this.fireButton = null;
     this.targetCount = 4;
+    this.tankScore = 0;
   }
 
   init () {
@@ -35,7 +36,7 @@ export default class extends Phaser.State {
     this.load.image('tank', 'assets/bird.png');
     this.load.image('turret', 'assets/turret.png');
     this.load.image('bullet', 'assets/frenz.jpg');
-    this.load.image('background', 'assets/background.png');
+    this.load.image('background1', 'assets/background.png');
     this.load.image('flame', 'assets/flame.png');
     this.load.image('target', 'assets/target.png');
     this.load.audio('hit', 'assets/nes-05-03.wav');
@@ -44,7 +45,7 @@ export default class extends Phaser.State {
 
   create () {
            //  Simple but pretty background
-    this.background = this.add.sprite(0, 0, 'background');
+    this.background = this.add.sprite(0, 0, 'background1');
     this.hitSound = this.add.audio('hit');
    //  Something to shoot at :)
     this.targets = this.add.group(this.game.world, 'targets', false, true, Phaser.Physics.ARCADE);
@@ -72,10 +73,14 @@ export default class extends Phaser.State {
 
    //  Some basic controls
     this.cursors = this.input.keyboard.createCursorKeys();
+    this.escape = this.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
     this.fireButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     this.fireButton.onDown.add(this.fire, this);
+    this.pause = this.input.keyboard.addKey(Phaser.Keyboard.P);
+    this.unpause = this.input.keyboard.addKey(Phaser.Keyboard.S);
     this.resetGame();
+    console.log(this.tankScore);
   }
 
   fire () {
@@ -131,8 +136,14 @@ export default class extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('Boot');
+    this.state.start('Menu');
     this.resetGame();
+  }
+
+  playerUpdate () {
+    if (this.tankScore === 0 || this.tankScore > 1) {
+      this.tankScore = this.tankScore + 1;
+    }
   }
 
   resetGame () {
@@ -154,7 +165,15 @@ export default class extends Phaser.State {
         */
 
   update () {
-    if (this.targetCount > 0) {
+    if (this.pause.isDown) {
+      this.physics.arcade.isPaused = true;
+    }
+    if (this.unpause.isDown) {
+      this.physics.arcade.isPaused = false;
+    }
+    if (this.escape.isDown) {
+      this.goHome();
+    } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 420) {
                      //  Simple check to see if it's fallen too low
@@ -182,6 +201,8 @@ export default class extends Phaser.State {
       }
     } else {
       this.goHome();
+      this.playerUpdate();
+      console.log(this.tankScore);
     }
   }
 };
