@@ -3863,7 +3863,7 @@ var Game = function (_Phaser$Game) {
 
     var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, width, height, _phaser2.default.CANVAS, 'content', null));
 
-    _this.luigiComplete = false;
+    _this.luigiComplete = true;
     _this.tankComplete = false;
     _this.flappyComplete = false;
     _this.breakoutComplete = false;
@@ -4969,51 +4969,11 @@ var Splash = function (_Phaser$State) {
       if (this.physics.arcade.collide(this.player, this.tank)) {
         this.goToTank();
       }
-      if (this.physics.arcade.collide(this.player, this.bird)) {
-        this.goToFlappy();
-      }
-      // if (this.physics.arcade.collide(this.player, this.mushroom)) {
-      //   this.goToGame();
-      // }
-      if (this.physics.arcade.collide(this.player, this.luigi)) {
-        this.goToLuigi();
-      }
-      if (this.physics.arcade.collide(this.player, this.brick)) {
-        this.goToBreakOut();
-      }
-      this.physics.arcade.collide(this.player, this.rock1);
-      this.physics.arcade.collide(this.player, this.rock2);
-      this.physics.arcade.collide(this.player, this.rock3);
-      this.physics.arcade.collide(this.player, this.rock4);
-    }
-  }, {
-    key: 'goToGame',
-    value: function goToGame() {
-      this.state.start('Game');
-      this.music.stop();
     }
   }, {
     key: 'goToTank',
     value: function goToTank() {
       this.state.start('Tank');
-      this.music.stop();
-    }
-  }, {
-    key: 'goToLuigi',
-    value: function goToLuigi() {
-      this.state.start('Luigi');
-      this.music.stop();
-    }
-  }, {
-    key: 'goToFlappy',
-    value: function goToFlappy() {
-      this.state.start('Flappy');
-      this.music.stop();
-    }
-  }, {
-    key: 'goToBreakOut',
-    value: function goToBreakOut() {
-      this.state.start('BreakOut');
       this.music.stop();
     }
   }, {
@@ -5172,9 +5132,9 @@ var Splash = function (_Phaser$State) {
         this.tank.body.immovable = true;
         this.tank.body.collideWorldBounds = true;
       } else {
-        this.tank = this.add.sprite(100, 100, 'star');
-        // this.physics.arcade.enable(this.tank);
-        // this.tank.body.immovable = true;
+        this.star = this.add.sprite(100, 100, 'star');
+        this.physics.arcade.enable(this.star);
+        this.star.body.immovable = true;
         // this.tank.body.collideWorldBounds = true;
       }
 
@@ -5277,6 +5237,7 @@ var Splash = function (_Phaser$State) {
       this.physics.arcade.collide(this.player, this.rock2);
       this.physics.arcade.collide(this.player, this.rock3);
       this.physics.arcade.collide(this.player, this.rock4);
+      this.physics.arcade.collide(this.player, this.star);
     }
   }, {
     key: 'goToGame',

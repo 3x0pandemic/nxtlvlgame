@@ -76,9 +76,9 @@ export default class Splash extends Phaser.State {
       this.tank.body.immovable = true;
       this.tank.body.collideWorldBounds = true;
     } else {
-      this.tank = this.add.sprite(100, 100, 'star');
-      // this.physics.arcade.enable(this.tank);
-      // this.tank.body.immovable = true;
+      this.star = this.add.sprite(100, 100, 'star');
+      this.physics.arcade.enable(this.star);
+      this.star.body.immovable = true;
       // this.tank.body.collideWorldBounds = true;
     }
 
@@ -180,6 +180,7 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.collide(this.player, this.rock2);
     this.physics.arcade.collide(this.player, this.rock3);
     this.physics.arcade.collide(this.player, this.rock4);
+    this.physics.arcade.collide(this.player, this.star);
   }
 
   goToGame () {

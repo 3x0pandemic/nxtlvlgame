@@ -120,27 +120,6 @@ export default class Splash extends Phaser.State {
     if (this.physics.arcade.collide(this.player, this.tank)) {
       this.goToTank();
     }
-    if (this.physics.arcade.collide(this.player, this.bird)) {
-      this.goToFlappy();
-    }
-    // if (this.physics.arcade.collide(this.player, this.mushroom)) {
-    //   this.goToGame();
-    // }
-    if (this.physics.arcade.collide(this.player, this.luigi)) {
-      this.goToLuigi();
-    }
-    if (this.physics.arcade.collide(this.player, this.brick)) {
-      this.goToBreakOut();
-    }
-    this.physics.arcade.collide(this.player, this.rock1);
-    this.physics.arcade.collide(this.player, this.rock2);
-    this.physics.arcade.collide(this.player, this.rock3);
-    this.physics.arcade.collide(this.player, this.rock4);
-  }
-
-  goToGame () {
-    this.state.start('Game');
-    this.music.stop();
   }
 
   goToTank () {
@@ -148,20 +127,6 @@ export default class Splash extends Phaser.State {
     this.music.stop();
   }
 
-  goToLuigi () {
-    this.state.start('Luigi');
-    this.music.stop();
-  }
-
-  goToFlappy () {
-    this.state.start('Flappy');
-    this.music.stop();
-  }
-
-  goToBreakOut () {
-    this.state.start('BreakOut');
-    this.music.stop();
-  }
   goHome () {
     this.state.start('Splash');
     // this.resetGame();

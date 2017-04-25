@@ -21,7 +21,7 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
-    this.luigiComplete = false;
+    this.luigiComplete = true;
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
