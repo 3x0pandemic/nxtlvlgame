@@ -14,7 +14,6 @@ export default class extends Phaser.State {
     this.score = 0;
     this.scoreText = null;
     this.paused = false;
-    this.luigiScore = 0;
   }
 
   preload () {
@@ -98,7 +97,6 @@ export default class extends Phaser.State {
     }
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     this.resetGame();
-    console.log(this.luigiScore);
   }
 
   update () {
@@ -140,7 +138,6 @@ export default class extends Phaser.State {
     } else {
       this.goHome();
       this.playerUpdate();
-      console.log(this.luigiScore);
     }
     function collectStar (player, star) {
       star.kill();
@@ -150,10 +147,7 @@ export default class extends Phaser.State {
   }
 
   playerUpdate () {
-    window.game.playerScore();
-    if (this.luigiScore === 0 || this.luigiScore > 1) {
-      this.luigiScore = this.luigiScore + 1;
-    }
+    window.game.luigiCompleted();
   }
 
   goMenu (menu) {

@@ -3863,7 +3863,10 @@ var Game = function (_Phaser$Game) {
 
     var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, width, height, _phaser2.default.CANVAS, 'content', null));
 
-    _this.score = 0;
+    _this.luigiComplete = false;
+    _this.tankComplete = false;
+    _this.flappyComplete = false;
+    _this.breakoutComplete = false;
 
     _this.state.add('Boot', _Boot2.default, false);
     _this.state.add('Splash', _Splash2.default, false);
@@ -3879,10 +3882,28 @@ var Game = function (_Phaser$Game) {
   }
 
   _createClass(Game, [{
-    key: 'playerScore',
-    value: function playerScore() {
-      this.score++;
-      console.log(this.score);
+    key: 'luigiCompleted',
+    value: function luigiCompleted() {
+      this.luigiComplete = true;
+      console.log('Luigi: ' + this.luigiComplete);
+    }
+  }, {
+    key: 'tankCompleted',
+    value: function tankCompleted() {
+      this.tankComplete = true;
+      console.log('Tank: ' + this.tankComplete);
+    }
+  }, {
+    key: 'flappyCompleted',
+    value: function flappyCompleted() {
+      this.flappyComplete = true;
+      console.log('Flappy: ' + this.flappyComplete);
+    }
+  }, {
+    key: 'breakoutCompleted',
+    value: function breakoutCompleted() {
+      this.breakoutComplete = true;
+      console.log('Breakout: ' + this.breakoutComplete);
     }
   }]);
 
@@ -4617,7 +4638,6 @@ var _class = function (_Phaser$State) {
     _this.score = 0;
     _this.scoreText = null;
     _this.paused = false;
-    _this.luigiScore = 0;
     return _this;
   }
 
@@ -4705,7 +4725,6 @@ var _class = function (_Phaser$State) {
       }
       this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
       this.resetGame();
-      console.log(this.luigiScore);
     }
   }, {
     key: 'update',
@@ -4748,7 +4767,6 @@ var _class = function (_Phaser$State) {
       } else {
         this.goHome();
         this.playerUpdate();
-        console.log(this.luigiScore);
       }
       function collectStar(player, star) {
         star.kill();
@@ -4759,10 +4777,7 @@ var _class = function (_Phaser$State) {
   }, {
     key: 'playerUpdate',
     value: function playerUpdate() {
-      window.game.playerScore();
-      if (this.luigiScore === 0 || this.luigiScore > 1) {
-        this.luigiScore = this.luigiScore + 1;
-      }
+      window.game.luigiCompleted();
     }
   }, {
     key: 'goMenu',
@@ -4870,7 +4885,8 @@ var Splash = function (_Phaser$State) {
     value: function preload() {
       this.load.image('title', 'assets/logo.png');
       this.load.image('tank', 'assets/tank.png');
-      this.load.image('tankButton', 'assets/star.png');
+      this.load.image('startButton', 'assets/power.png');
+      this.load.image('stopButton', 'assets/cancel.png');
       this.load.image('background', 'assets/options-bg.jpg');
       this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
     }
@@ -4896,8 +4912,8 @@ var Splash = function (_Phaser$State) {
 
       // Just to kick things off
       // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-      this.startButton = this.add.button(100, 400, 'startButton', this.goToTank);
-      this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome);
+      this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
+      this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
       // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
       // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
 
@@ -5106,7 +5122,7 @@ var Splash = function (_Phaser$State) {
       this.load.image('brick', 'assets/brick.png');
       this.load.image('luigi', 'assets/luigi.png');
       this.load.image('mushroom', 'assets/mushroom.png');
-      this.load.image('luigiButton', 'assets/star.png');
+      this.load.image('star', 'assets/star.png');
       this.load.image('flappyButton', 'assets/bird.png');
       this.load.image('rock', 'assets/rock.png');
       this.load.image('mushroom', 'assets/images/mushroom2.png');
@@ -5150,10 +5166,17 @@ var Splash = function (_Phaser$State) {
       this.rock4.body.immovable = true;
       this.rock4.body.collideWorldBounds = true;
 
-      this.tank = this.add.sprite(100, 100, 'tank');
-      this.physics.arcade.enable(this.tank);
-      this.tank.body.immovable = true;
-      this.tank.body.collideWorldBounds = true;
+      if (window.game.luigiComplete) {
+        this.tank = this.add.sprite(100, 100, 'tank');
+        this.physics.arcade.enable(this.tank);
+        this.tank.body.immovable = true;
+        this.tank.body.collideWorldBounds = true;
+      } else {
+        this.tank = this.add.sprite(100, 100, 'star');
+        // this.physics.arcade.enable(this.tank);
+        // this.tank.body.immovable = true;
+        // this.tank.body.collideWorldBounds = true;
+      }
 
       this.music = this.add.audio('mainTitle');
 

@@ -27,7 +27,7 @@ export default class Splash extends Phaser.State {
     this.load.image('brick', 'assets/brick.png');
     this.load.image('luigi', 'assets/luigi.png');
     this.load.image('mushroom', 'assets/mushroom.png');
-    this.load.image('luigiButton', 'assets/star.png');
+    this.load.image('star', 'assets/star.png');
     this.load.image('flappyButton', 'assets/bird.png');
     this.load.image('rock', 'assets/rock.png');
     this.load.image('mushroom', 'assets/images/mushroom2.png');
@@ -70,10 +70,17 @@ export default class Splash extends Phaser.State {
     this.rock4.body.immovable = true;
     this.rock4.body.collideWorldBounds = true;
 
-    this.tank = this.add.sprite(100, 100, 'tank');
-    this.physics.arcade.enable(this.tank);
-    this.tank.body.immovable = true;
-    this.tank.body.collideWorldBounds = true;
+    if (window.game.luigiComplete) {
+      this.tank = this.add.sprite(100, 100, 'tank');
+      this.physics.arcade.enable(this.tank);
+      this.tank.body.immovable = true;
+      this.tank.body.collideWorldBounds = true;
+    } else {
+      this.tank = this.add.sprite(100, 100, 'star');
+      // this.physics.arcade.enable(this.tank);
+      // this.tank.body.immovable = true;
+      // this.tank.body.collideWorldBounds = true;
+    }
 
     this.music = this.add.audio('mainTitle');
 

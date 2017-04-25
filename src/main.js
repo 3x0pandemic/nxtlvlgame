@@ -21,7 +21,10 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
-    this.score = 0;
+    this.luigiComplete = false;
+    this.tankComplete = false;
+    this.flappyComplete = false;
+    this.breakoutComplete = false;
 
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
@@ -34,9 +37,21 @@ class Game extends Phaser.Game {
 
     this.state.start('Boot');
   }
-  playerScore () {
-    this.score++;
-    console.log(this.score);
+  luigiCompleted () {
+    this.luigiComplete = true;
+    console.log('Luigi: ' + this.luigiComplete);
+  }
+  tankCompleted () {
+    this.tankComplete = true;
+    console.log('Tank: ' + this.tankComplete);
+  }
+  flappyCompleted () {
+    this.flappyComplete = true;
+    console.log('Flappy: ' + this.flappyComplete);
+  }
+  breakoutCompleted () {
+    this.breakoutComplete = true;
+    console.log('Breakout: ' + this.breakoutComplete);
   }
 }
 

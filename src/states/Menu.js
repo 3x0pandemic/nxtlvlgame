@@ -38,7 +38,8 @@ export default class Splash extends Phaser.State {
   preload () {
     this.load.image('title', 'assets/logo.png');
     this.load.image('tank', 'assets/tank.png');
-    this.load.image('tankButton', 'assets/star.png');
+    this.load.image('startButton', 'assets/power.png');
+    this.load.image('stopButton', 'assets/cancel.png');
     this.load.image('background', 'assets/options-bg.jpg');
     this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
   }
@@ -63,8 +64,8 @@ export default class Splash extends Phaser.State {
 
     // Just to kick things off
     // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToTank);
-    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome);
+    this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
+    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
     // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
     // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
 
