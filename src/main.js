@@ -11,6 +11,8 @@ import LuigiState from './states/luigi';
 import FlappyState from './states/flappy';
 import BreakOutState from './states/breakout';
 import Menu from './states/Menu';
+import FlappyGameOver from './states/flappyGameOver';
+import BreakoutGameOver from './states/breakoutGameOver';
 
 import config from './config';
 
@@ -22,6 +24,11 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
+    this.luigiComplete = false;
+    this.tankComplete = false;
+    this.flappyComplete = false;
+    this.breakoutComplete = false;
+
     this.state.add('Boot', BootState, false);
     this.state.add('Splash', SplashState, false);
     this.state.add('Game', GameState, false);
@@ -30,6 +37,8 @@ class Game extends Phaser.Game {
     this.state.add('Flappy', FlappyState, false);
     this.state.add('BreakOut', BreakOutState, false);
     this.state.add('Menu', Menu, false);
+    this.state.add('FlappyGameOver', FlappyGameOver, false);
+    this.state.add('BreakoutGameOver', BreakoutGameOver, false);
     this.state.start('Boot');
   }
   luigiCompleted () {

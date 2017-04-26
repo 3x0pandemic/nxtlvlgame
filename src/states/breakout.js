@@ -83,7 +83,7 @@ export default class extends Phaser.State {
 
     // Restart the game if the ball is below the paddle
     if (this.ball.y > this.paddle.y) {
-      this.state.start('BreakOut');
+      this.state.start('BreakoutGameOver');
       this.music.stop();
       this.score = 0;
     }

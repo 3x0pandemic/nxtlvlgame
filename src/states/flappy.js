@@ -8,6 +8,7 @@ export default class extends Phaser.State {
     this.pipes = null;
     this.music = null;
   }
+
   preload () {
     this.load.image('bird', 'assets/frenz.jpg');
     this.load.image('pipe', 'assets/favicon.png');
@@ -96,7 +97,7 @@ export default class extends Phaser.State {
 // Restart the game
   restartGame () {
     // Start the 'main' state, which restarts the game
-    this.state.start('Flappy');
+    this.state.start('FlappyGameOver');
     this.music.stop();
     this.dieSound.play();
   }
