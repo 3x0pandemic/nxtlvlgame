@@ -1,16 +1,14 @@
 
-import 'pixi';
-import 'p2';
 import Phaser from 'phaser';
-
-import BootState from './states/Boot';
-import SplashState from './states/Splash';
-import GameState from './states/Game';
-import TankState from './states/tank';
-import LuigiState from './states/luigi';
-import FlappyState from './states/flappy';
-import BreakOutState from './states/breakout';
-import Menu from './states/Menu';
+import Splash from './states/Splash';
+import Tank from './states/Tank';
+import Luigi from './states/Luigi';
+import Flappy from './states/Flappy';
+import Breakout from './states/Breakout';
+import LuigiMenu from './states/LuigiMenu';
+import TankMenu from './states/TankMenu';
+import FlappyMenu from './states/FlappyMenu';
+import BreakoutMenu from './states/BreakoutMenu';
 import FlappyGameOver from './states/flappyGameOver';
 import BreakoutGameOver from './states/breakoutGameOver';
 
@@ -24,22 +22,24 @@ class Game extends Phaser.Game {
 
     super(width, height, Phaser.CANVAS, 'content', null);
 
-    this.luigiComplete = false;
+    this.luigiComplete = true;
     this.tankComplete = false;
     this.flappyComplete = false;
     this.breakoutComplete = false;
 
-    this.state.add('Boot', BootState, false);
-    this.state.add('Splash', SplashState, false);
-    this.state.add('Game', GameState, false);
-    this.state.add('Tank', TankState, false);
-    this.state.add('Luigi', LuigiState, false);
-    this.state.add('Flappy', FlappyState, false);
-    this.state.add('BreakOut', BreakOutState, false);
-    this.state.add('Menu', Menu, false);
+    this.state.add('Splash', Splash, false);
+    this.state.add('Tank', Tank, false);
+    this.state.add('Luigi', Luigi, false);
+    this.state.add('Flappy', Flappy, false);
+    this.state.add('Breakout', Breakout, false);
+    this.state.add('LuigiMenu', LuigiMenu, false);
+    this.state.add('TankMenu', TankMenu, false);
+    this.state.add('FlappyMenu', FlappyMenu, false);
+    this.state.add('BreakoutMenu', BreakoutMenu, false);
     this.state.add('FlappyGameOver', FlappyGameOver, false);
     this.state.add('BreakoutGameOver', BreakoutGameOver, false);
-    this.state.start('Boot');
+
+    this.state.start('Splash');
   }
   luigiCompleted () {
     this.luigiComplete = true;

@@ -1,33 +1,20 @@
-import 'pixi';
-import 'p2';
 import Phaser from 'phaser';
 
-export default class extends Phaser.State {
+export default class Luigi extends Phaser.State {
   constructor () {
     super();
-    this.cursors = null;
-    this.menu = null;
-    this.player = null;
-    this.platforms = null;
-    this.star = null;
-    this.stars = null;
     this.score = 0;
-    this.scoreText = null;
-    this.paused = false;
   }
 
   preload () {
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('menu', 'assets/menubar.png');
-    this.load.image('dude2', 'assets/sprite.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.load.image('sky', 'assets/luigi/sky.png');
+    this.load.image('ground', 'assets/luigi/platform.png');
+    this.load.image('star', 'assets/luigi/star.png');
+    this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
   }
 
   create () {
-  // this.add.sprite(0, 0, 'star');
-  //  We're going to be using physics, so enable the Arcade Physics system
+    //  We're going to be using physics, so enable the Arcade Physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
@@ -150,12 +137,8 @@ export default class extends Phaser.State {
     window.game.luigiCompleted();
   }
 
-  goMenu (menu) {
-    this.state.start('Menu');
-  }
-
   goHome () {
-    this.state.start('Boot');
+    this.state.start('LuigiMenu');
     this.resetGame();
   }
 

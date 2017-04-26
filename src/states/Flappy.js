@@ -1,28 +1,19 @@
-import 'pixi';
-import 'p2';
 import Phaser from 'phaser';
 
-export default class extends Phaser.State {
-  constructor () {
-    super();
-    this.pipes = null;
-    this.music = null;
-  }
-
+export default class Flappy extends Phaser.State {
   preload () {
-    this.load.image('bird', 'assets/frenz.jpg');
-    this.load.image('pipe', 'assets/favicon.png');
-    this.load.image('sky', 'assets/sky.png');
-    this.load.audio('jump', 'assets/jump_07.wav');
-    this.load.audio('hit', 'assets/nes-05-03.wav');
-    this.load.audio('music', 'assets/SouthPark.mp3');
+    this.load.image('bird', 'assets/flappy/frenz.jpg');
+    this.load.image('pipe', 'assets/flappy/frog.png');
+    this.load.image('sky', 'assets/flappy/sky.png');
+    this.load.audio('jump', 'assets/audio/jump_07.wav');
+    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('music', 'assets/audio/SouthPark.mp3');
   }
 
   create () {
-  // Change the background color of the game to blue
+    // Change the background color of the game to blue
     this.stage.backgroundColor = '#48A0D0';
     this.add.sprite(0, 0, 'sky');
-
     // Create an empty group
     this.pipes = this.add.group();
 
@@ -30,23 +21,17 @@ export default class extends Phaser.State {
     this.hitSound = this.add.audio('hit');
     this.dieSound = this.add.audio('hit');
     this.music = this.add.audio('music');
-
     this.music.play();
-
-  // Set the physics system
+    // Set the physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
-
-  // Display the bird at the position x=100 and y=245
+    // Display the bird at the position x=100 and y=245
     this.bird = this.add.sprite(100, 245, 'bird');
-
-  // Add physics to the bird
-  // Needed for: movements, gravity, collisions, etc.
+    // Add physics to the bird
+    // Needed for: movements, gravity, collisions, etc.
     this.physics.arcade.enable(this.bird);
-
-  // Add gravity to the bird to make it fall
+    // Add gravity to the bird to make it fall
     this.bird.body.gravity.y = 1000;
-
-  // Call the 'jump' function when the spacekey is hit
+    // Call the 'jump' function when the spacekey is hit
     var spaceKey = this.input.keyboard.addKey(
                   Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this);
@@ -56,7 +41,6 @@ export default class extends Phaser.State {
     this.score = 0;
     this.labelScore = this.add.text(20, 20, '0',
     { font: '30px Arial', fill: '#ffffff' });
-
     // Move the anchor to the left and downward
     this.bird.anchor.setTo(-0.2, 0.5);
   }
@@ -84,16 +68,12 @@ export default class extends Phaser.State {
     this.bird.body.velocity.y = -350;
     // Create an animation on the bird
     var animation = this.add.tween(this.bird);
-
-// Change the angle of the bird to -20° in 100 milliseconds
+    // Change the angle of the bird to -20° in 100 milliseconds
     animation.to({angle: -20}, 100);
-
-// And start the animation
+    // And start the animation
     animation.start();
-
     this.jumpSound.play();
   }
-
 // Restart the game
   restartGame () {
     // Start the 'main' state, which restarts the game
@@ -150,7 +130,7 @@ export default class extends Phaser.State {
     this.hitSound.play();
   }
   goHome () {
-    this.state.start('Boot');
+    this.state.start('Splash');
     // this.resetGame();
   }
 }
