@@ -1,7 +1,7 @@
 
 import Phaser from 'phaser';
 
-export default class TankMenu extends Phaser.State {
+export default class BreakoutMenu extends Phaser.State {
   constructor () {
     super();
     this.x = 32;
@@ -9,7 +9,7 @@ export default class TankMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Tank Destruction\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, 'Break the Bricks\nPress <esc> to exit', {
       font: 'bold 60pt TheMinion',
       fill: '#FDFFB5',
       align: 'center'
@@ -41,7 +41,7 @@ export default class TankMenu extends Phaser.State {
     this.music = this.add.audio('music');
     this.music.play();
 
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
+    this.startButton = this.add.button(100, 400, 'startButton', this.goToBreakout, this, 2, 1, 0);
     this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
 
     this.player = this.add.sprite(350, 250, 'dude');
@@ -82,8 +82,8 @@ export default class TankMenu extends Phaser.State {
     }
   }
 
-  goToTank () {
-    this.state.start('Tank');
+  goToBreakout () {
+    this.state.start('Breakout');
     this.music.stop();
   }
 

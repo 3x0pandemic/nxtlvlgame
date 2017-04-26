@@ -3,14 +3,15 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-import Boot from './states/Boot';
 import Splash from './states/Splash';
-// import Game from './states/Game';
 import Tank from './states/Tank';
 import Luigi from './states/Luigi';
 import Flappy from './states/Flappy';
 import Breakout from './states/Breakout';
+import LuigiMenu from './states/LuigiMenu';
 import TankMenu from './states/TankMenu';
+import FlappyMenu from './states/FlappyMenu';
+import BreakoutMenu from './states/BreakoutMenu';
 
 import config from './config';
 
@@ -27,15 +28,17 @@ class Game extends Phaser.Game {
     this.flappyComplete = false;
     this.breakoutComplete = false;
 
-    this.state.add('Boot', Boot, false);
     this.state.add('Splash', Splash, false);
-    // this.state.add('Game', Game, false);
     this.state.add('Tank', Tank, false);
     this.state.add('Luigi', Luigi, false);
     this.state.add('Flappy', Flappy, false);
-    this.state.add('BreakOut', Breakout, false);
+    this.state.add('Breakout', Breakout, false);
+    this.state.add('LuigiMenu', LuigiMenu, false);
     this.state.add('TankMenu', TankMenu, false);
-    this.state.start('Boot');
+    this.state.add('FlappyMenu', FlappyMenu, false);
+    this.state.add('BreakoutMenu', BreakoutMenu, false);
+
+    this.state.start('Splash');
   }
   luigiCompleted () {
     this.luigiComplete = true;

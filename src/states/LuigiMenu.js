@@ -1,7 +1,7 @@
 
 import Phaser from 'phaser';
 
-export default class TankMenu extends Phaser.State {
+export default class LuigiMenu extends Phaser.State {
   constructor () {
     super();
     this.x = 32;
@@ -9,7 +9,7 @@ export default class TankMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Tank Destruction\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, 'Luigi is a cheap Mario\nPress <esc> to exit', {
       font: 'bold 60pt TheMinion',
       fill: '#FDFFB5',
       align: 'center'
@@ -83,7 +83,7 @@ export default class TankMenu extends Phaser.State {
   }
 
   goToTank () {
-    this.state.start('Tank');
+    this.state.start('Luigi');
     this.music.stop();
   }
 

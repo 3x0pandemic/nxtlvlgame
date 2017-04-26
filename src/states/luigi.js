@@ -1,19 +1,9 @@
-import 'pixi';
-import 'p2';
 import Phaser from 'phaser';
 
-export default class extends Phaser.State {
+export default class Luigi extends Phaser.State {
   constructor () {
     super();
-    this.cursors = null;
-    this.menu = null;
-    this.player = null;
-    this.platforms = null;
-    this.star = null;
-    this.stars = null;
     this.score = 0;
-    this.scoreText = null;
-    this.paused = false;
   }
 
   preload () {
@@ -24,8 +14,7 @@ export default class extends Phaser.State {
   }
 
   create () {
-  // this.add.sprite(0, 0, 'star');
-  //  We're going to be using physics, so enable the Arcade Physics system
+    //  We're going to be using physics, so enable the Arcade Physics system
     this.physics.startSystem(Phaser.Physics.ARCADE);
 
     //  A simple background for our game
@@ -148,12 +137,8 @@ export default class extends Phaser.State {
     window.game.luigiCompleted();
   }
 
-  goMenu (menu) {
-    this.state.start('Menu');
-  }
-
   goHome () {
-    this.state.start('Boot');
+    this.state.start('LuigiMenu');
     this.resetGame();
   }
 
