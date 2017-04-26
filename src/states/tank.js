@@ -33,13 +33,13 @@ export default class extends Phaser.State {
            //  Remove the next 2 lines if running locally
     // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
     // this.load.crossOrigin = 'anonymous';
-    this.load.image('tank', 'assets/bird.png');
+    this.load.image('tank', 'assets/tank.png');
     this.load.image('turret', 'assets/turret.png');
-    this.load.image('bullet', 'assets/frenz.jpg');
+    this.load.image('bullet', 'assets/bullet.png');
     this.load.image('background1', 'assets/background.png');
     this.load.image('flame', 'assets/flame.png');
     this.load.image('target', 'assets/target.png');
-    this.load.audio('hit', 'assets/nes-05-03.wav');
+    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
   //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
   }
 
@@ -136,7 +136,7 @@ export default class extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('Menu');
+    this.state.start('TankMenu');
     this.resetGame();
   }
 

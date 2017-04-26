@@ -10,12 +10,12 @@ export default class extends Phaser.State {
     this.scoreText = null;
   }
   preload () {
-    this.load.image('paddle', 'assets/paddle.png');
-    this.load.image('brick', 'assets/brick.png');
-    this.load.image('sky', 'assets/desktop-background.png');
-    this.load.image('ball', 'assets/ball.png');
-    this.load.audio('hit', 'assets/nes-05-03.wav');
-    this.load.audio('music', 'assets/StElmo.mp3');
+    this.load.image('paddle', 'assets/breakout/paddle.png');
+    this.load.image('brick', 'assets/breakout/brick.png');
+    this.load.image('sky', 'assets/breakout/starsBG.png');
+    this.load.image('ball', 'assets/breakout/ball.png');
+    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('music', 'assets/audio/StElmo.mp3');
   }
 
   create () {

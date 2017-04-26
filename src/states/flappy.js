@@ -9,12 +9,12 @@ export default class extends Phaser.State {
     this.music = null;
   }
   preload () {
-    this.load.image('bird', 'assets/frenz.jpg');
-    this.load.image('pipe', 'assets/favicon.png');
-    this.load.image('sky', 'assets/sky.png');
-    this.load.audio('jump', 'assets/jump_07.wav');
-    this.load.audio('hit', 'assets/nes-05-03.wav');
-    this.load.audio('music', 'assets/SouthPark.mp3');
+    this.load.image('bird', 'assets/flappy/frenz.jpg');
+    this.load.image('pipe', 'assets/flappy/frog.png');
+    this.load.image('sky', 'assets/flappy/sky.png');
+    this.load.audio('jump', 'assets/audio/jump_07.wav');
+    this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+    this.load.audio('music', 'assets/audio/SouthPark.mp3');
   }
 
   create () {

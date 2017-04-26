@@ -17,12 +17,10 @@ export default class extends Phaser.State {
   }
 
   preload () {
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('menu', 'assets/menubar.png');
-    this.load.image('dude2', 'assets/sprite.png');
-    this.load.image('ground', 'assets/platform.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+    this.load.image('sky', 'assets/luigi/sky.png');
+    this.load.image('ground', 'assets/luigi/platform.png');
+    this.load.image('star', 'assets/luigi/star.png');
+    this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
   }
 
   create () {

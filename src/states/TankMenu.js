@@ -1,7 +1,7 @@
 
 import Phaser from 'phaser';
 
-export default class Splash extends Phaser.State {
+export default class extends Phaser.State {
   constructor () {
     super();
     this.text = '';
@@ -36,12 +36,10 @@ export default class Splash extends Phaser.State {
   }
 
   preload () {
-    this.load.image('title', 'assets/logo.png');
-    this.load.image('tank', 'assets/tank.png');
-    this.load.image('startButton', 'assets/power.png');
-    this.load.image('stopButton', 'assets/cancel.png');
-    this.load.image('background', 'assets/options-bg.jpg');
-    this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
+    this.load.image('startButton', 'assets/tankMenu/power.png');
+    this.load.image('stopButton', 'assets/tankMenu/cancel.png');
+    this.load.image('background', 'assets/tankMenu/paperBG.jpg');
+    this.load.audio('mainTitle', 'assets/audio/QuantumLeap.mp3');
   }
 
   create () {

@@ -20,21 +20,15 @@ export default class Splash extends Phaser.State {
   }
 
   preload () {
-    this.load.image('button', 'assets/star.png');
-    this.load.image('tankButton', 'assets/star.png');
-    this.load.image('tank', 'assets/tank.png');
-    this.load.image('bird', 'assets/bird.png');
-    this.load.image('brick', 'assets/brick.png');
-    this.load.image('luigi', 'assets/luigi.png');
-    this.load.image('mushroom', 'assets/mushroom.png');
-    this.load.image('star', 'assets/star.png');
-    this.load.image('flappyButton', 'assets/bird.png');
-    this.load.image('rock', 'assets/rock.png');
-    this.load.image('mushroom', 'assets/images/mushroom2.png');
-    this.load.image('map', 'assets/grass.png');
-    this.load.image('dude', 'assets/sprite.png');
-    this.load.image('breakoutButton', 'assets/images/mushroom2.png');
-    this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
+    this.load.image('tank', 'assets/splash/tank.png');
+    this.load.image('bird', 'assets/splash/bird.png');
+    this.load.image('brick', 'assets/splash/brick.png');
+    this.load.image('luigi', 'assets/splash/luigi.png');
+    this.load.image('star', 'assets/splash/star.png');
+    this.load.image('rock', 'assets/splash/rock.png');
+    this.load.image('map', 'assets/splash/grass.png');
+    this.load.image('dude', 'assets/splash/sprite.png');
+    this.load.audio('mainTitle', 'assets/splash/audio/QuantumLeap.mp3');
   }
 
   create () {
@@ -189,7 +183,7 @@ export default class Splash extends Phaser.State {
   }
 
   goToTank () {
-    this.state.start('Menu');
+    this.state.start('TankMenu');
     this.music.stop();
   }
 

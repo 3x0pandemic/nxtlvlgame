@@ -3,14 +3,15 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
-import BootState from './states/Boot';
-import SplashState from './states/Splash';
-import GameState from './states/Game';
-import TankState from './states/Tank';
-import LuigiState from './states/Luigi';
-import FlappyState from './states/Flappy';
-import BreakOutState from './states/Breakout';
-import Menu from './states/Menu';
+import Boot from './states/Boot';
+import Splash from './states/Splash';
+// import Game from './states/Game';
+import Tank from './states/Tank';
+import Luigi from './states/Luigi';
+import Flappy from './states/Flappy';
+import Breakout from './states/Breakout';
+import TankMenu from './states/TankMenu';
+
 import config from './config';
 
 class Game extends Phaser.Game {
@@ -26,15 +27,14 @@ class Game extends Phaser.Game {
     this.flappyComplete = false;
     this.breakoutComplete = false;
 
-    this.state.add('Boot', BootState, false);
-    this.state.add('Splash', SplashState, false);
-    this.state.add('Game', GameState, false);
-    this.state.add('Tank', TankState, false);
-    this.state.add('Luigi', LuigiState, false);
-    this.state.add('Flappy', FlappyState, false);
-    this.state.add('BreakOut', BreakOutState, false);
-    this.state.add('Menu', Menu, false);
-
+    this.state.add('Boot', Boot, false);
+    this.state.add('Splash', Splash, false);
+    // this.state.add('Game', Game, false);
+    this.state.add('Tank', Tank, false);
+    this.state.add('Luigi', Luigi, false);
+    this.state.add('Flappy', Flappy, false);
+    this.state.add('BreakOut', Breakout, false);
+    this.state.add('TankMenu', TankMenu, false);
     this.state.start('Boot');
   }
   luigiCompleted () {
@@ -54,5 +54,4 @@ class Game extends Phaser.Game {
     console.log('Breakout: ' + this.breakoutComplete);
   }
 }
-
 window.game = new Game();

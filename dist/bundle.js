@@ -3811,33 +3811,29 @@ var _Boot = __webpack_require__(/*! ./states/Boot */ 123);
 
 var _Boot2 = _interopRequireDefault(_Boot);
 
-var _Splash = __webpack_require__(/*! ./states/Splash */ 129);
+var _Splash = __webpack_require__(/*! ./states/Splash */ 126);
 
 var _Splash2 = _interopRequireDefault(_Splash);
 
-var _Game = __webpack_require__(/*! ./states/Game */ 126);
-
-var _Game2 = _interopRequireDefault(_Game);
-
-var _Tank = __webpack_require__(/*! ./states/Tank */ 130);
+var _Tank = __webpack_require__(/*! ./states/Tank */ 322);
 
 var _Tank2 = _interopRequireDefault(_Tank);
 
-var _Luigi = __webpack_require__(/*! ./states/Luigi */ 127);
+var _Luigi = __webpack_require__(/*! ./states/Luigi */ 321);
 
 var _Luigi2 = _interopRequireDefault(_Luigi);
 
-var _Flappy = __webpack_require__(/*! ./states/Flappy */ 125);
+var _Flappy = __webpack_require__(/*! ./states/Flappy */ 320);
 
 var _Flappy2 = _interopRequireDefault(_Flappy);
 
-var _Breakout = __webpack_require__(/*! ./states/Breakout */ 124);
+var _Breakout = __webpack_require__(/*! ./states/Breakout */ 319);
 
 var _Breakout2 = _interopRequireDefault(_Breakout);
 
-var _Menu = __webpack_require__(/*! ./states/Menu */ 128);
+var _TankMenu = __webpack_require__(/*! ./states/TankMenu */ 318);
 
-var _Menu2 = _interopRequireDefault(_Menu);
+var _TankMenu2 = _interopRequireDefault(_TankMenu);
 
 var _config = __webpack_require__(/*! ./config */ 121);
 
@@ -3850,6 +3846,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import Game from './states/Game';
+
 
 var Game = function (_Phaser$Game) {
   _inherits(Game, _Phaser$Game);
@@ -3870,13 +3868,12 @@ var Game = function (_Phaser$Game) {
 
     _this.state.add('Boot', _Boot2.default, false);
     _this.state.add('Splash', _Splash2.default, false);
-    _this.state.add('Game', _Game2.default, false);
+    // this.state.add('Game', Game, false);
     _this.state.add('Tank', _Tank2.default, false);
     _this.state.add('Luigi', _Luigi2.default, false);
     _this.state.add('Flappy', _Flappy2.default, false);
     _this.state.add('BreakOut', _Breakout2.default, false);
-    _this.state.add('Menu', _Menu2.default, false);
-
+    _this.state.add('TankMenu', _TankMenu2.default, false);
     _this.state.start('Boot');
     return _this;
   }
@@ -3974,65 +3971,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 122 */
-/* unknown exports provided */
-/* all exports used */
-/*!*********************************!*\
-  !*** ./src/sprites/Mushroom.js ***!
-  \*********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$Sprite) {
-  _inherits(_class, _Phaser$Sprite);
-
-  function _class(_ref) {
-    var game = _ref.game,
-        x = _ref.x,
-        y = _ref.y,
-        asset = _ref.asset;
-
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, game, x, y, asset));
-
-    _this.anchor.setTo(0.5);
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'update',
-    value: function update() {
-      this.angle += 1;
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.Sprite);
-
-exports.default = _class;
-
-/***/ }),
+/* 122 */,
 /* 123 */
 /* unknown exports provided */
 /* all exports used */
@@ -4095,9 +4034,6 @@ var _class = function (_Phaser$State) {
       var text = this.add.text(this.world.centerX, this.world.centerY, 'loading fonts', { font: '16px Arial', fill: '#dddddd', align: 'center' });
 
       text.anchor.setTo(0.5, 0.5);
-
-      this.load.image('loaderBg', './assets/images/loader-bg.png');
-      this.load.image('loaderBar', './assets/images/loader-bar.png');
     }
   }, {
     key: 'render',
@@ -4119,907 +4055,9 @@ var _class = function (_Phaser$State) {
 exports.default = _class;
 
 /***/ }),
-/* 124 */
-/* unknown exports provided */
-/* all exports used */
-/*!********************************!*\
-  !*** ./src/states/Breakout.js ***!
-  \********************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! pixi */ 41);
-
-__webpack_require__(/*! p2 */ 42);
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$State) {
-  _inherits(_class, _Phaser$State);
-
-  function _class() {
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
-
-    _this.music = null;
-    _this.score = 0;
-    _this.scoreText = null;
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'preload',
-    value: function preload() {
-      this.load.image('paddle', 'assets/paddle.png');
-      this.load.image('brick', 'assets/brick.png');
-      this.load.image('sky', 'assets/desktop-background.png');
-      this.load.image('ball', 'assets/ball.png');
-      this.load.audio('hit', 'assets/nes-05-03.wav');
-      this.load.audio('music', 'assets/StElmo.mp3');
-    }
-  }, {
-    key: 'create',
-    value: function create() {
-      this.stage.backgroundColor = '#4F77A2';
-      this.add.sprite(0, 0, 'sky');
-      this.hitSound = this.add.audio('hit');
-
-      this.music = this.add.audio('music');
-      this.music.play();
-
-      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
-
-      // Start the Arcade physics system (for movements and collisions)
-      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
-
-      // Add the physics engine to all the game objetcs
-      this.world.enableBody = true;
-
-      this.left = this.input.keyboard.addKey(_phaser2.default.Keyboard.LEFT);
-      this.right = this.input.keyboard.addKey(_phaser2.default.Keyboard.RIGHT);
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-      this.paddle = this.add.sprite(200, 550, 'paddle');
-      this.paddle.body.immovable = true;
-      this.paddle.body.collideWorldBounds = true;
-
-      this.bricks = this.add.group();
-
-      for (var i = 0; i < 12; i++) {
-        for (var j = 0; j < 6; j++) {
-          // Create the brick at the correct position
-          var brick = this.add.sprite(55 + i * 60, 55 + j * 35, 'brick');
-
-          // Make sure the brick won't move when the ball hits it
-          brick.body.immovable = true;
-
-          // Add the brick to the group
-          this.bricks.add(brick);
-        }
-      }
-      this.ball = this.add.sprite(200, 500, 'ball');
-
-      // Give the ball some initial speed
-      this.ball.body.velocity.x = 200;
-      this.ball.body.velocity.y = 200;
-
-      // Make sure the ball will bounce when hitting something
-      this.ball.body.bounce.setTo(1);
-      this.ball.body.collideWorldBounds = true;
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.escape.isDown) {
-        this.goHome();
-      }
-
-      if (this.left.isDown) {
-        this.paddle.body.velocity.x = -300;
-      } else if (this.right.isDown) {
-        this.paddle.body.velocity.x = 300;
-      } else this.paddle.body.velocity.x = 0;
-      // Add collisions between the paddle and the ball
-      this.physics.arcade.collide(this.paddle, this.ball);
-
-      // Call the 'hit' function when the ball hits a brick
-      this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
-
-      // Restart the game if the ball is below the paddle
-      if (this.ball.y > this.paddle.y) {
-        this.state.start('BreakOut');
-        this.music.stop();
-        this.score = 0;
-      }
-    }
-
-    // New function that removes a brick from the game
-
-  }, {
-    key: 'hit',
-    value: function hit(ball, brick) {
-      brick.kill();
-      this.hitSound.play();
-      this.score += 10;
-      this.scoreText.text = 'Score: ' + this.score;
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Boot');
-      // this.resetGame();
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.State);
-
-exports.default = _class;
-;
-
-/***/ }),
-/* 125 */
-/* unknown exports provided */
-/* all exports used */
-/*!******************************!*\
-  !*** ./src/states/Flappy.js ***!
-  \******************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! pixi */ 41);
-
-__webpack_require__(/*! p2 */ 42);
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$State) {
-  _inherits(_class, _Phaser$State);
-
-  function _class() {
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
-
-    _this.pipes = null;
-    _this.music = null;
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'preload',
-    value: function preload() {
-      this.load.image('bird', 'assets/frenz.jpg');
-      this.load.image('pipe', 'assets/favicon.png');
-      this.load.image('sky', 'assets/sky.png');
-      this.load.audio('jump', 'assets/jump_07.wav');
-      this.load.audio('hit', 'assets/nes-05-03.wav');
-      this.load.audio('music', 'assets/SouthPark.mp3');
-    }
-  }, {
-    key: 'create',
-    value: function create() {
-      // Change the background color of the game to blue
-      this.stage.backgroundColor = '#48A0D0';
-      this.add.sprite(0, 0, 'sky');
-
-      // Create an empty group
-      this.pipes = this.add.group();
-
-      this.jumpSound = this.add.audio('jump');
-      this.hitSound = this.add.audio('hit');
-      this.dieSound = this.add.audio('hit');
-      this.music = this.add.audio('music');
-
-      this.music.play();
-
-      // Set the physics system
-      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
-
-      // Display the bird at the position x=100 and y=245
-      this.bird = this.add.sprite(100, 245, 'bird');
-
-      // Add physics to the bird
-      // Needed for: movements, gravity, collisions, etc.
-      this.physics.arcade.enable(this.bird);
-
-      // Add gravity to the bird to make it fall
-      this.bird.body.gravity.y = 1000;
-
-      // Call the 'jump' function when the spacekey is hit
-      var spaceKey = this.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
-      spaceKey.onDown.add(this.jump, this);
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-
-      this.timer = this.time.events.loop(1500, this.addRowOfPipes, this);
-      this.score = 0;
-      this.labelScore = this.add.text(20, 20, '0', { font: '30px Arial', fill: '#ffffff' });
-
-      // Move the anchor to the left and downward
-      this.bird.anchor.setTo(-0.2, 0.5);
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.escape.isDown) {
-        this.goHome();
-        // If the bird is out of the screen (too high or too low)
-        // Call the 'restartGame' function
-      } else if (this.bird.y < 0 || this.bird.y > 800) {
-        this.restartGame();
-      }
-      this.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null, this);
-      if (this.bird.angle < 20) {
-        this.bird.angle += 1;
-      }
-    }
-    // Make the bird jump
-
-  }, {
-    key: 'jump',
-    value: function jump() {
-      if (this.bird.alive === false) {
-        return;
-      }
-      // Add a vertical velocity to the bird
-      this.bird.body.velocity.y = -350;
-      // Create an animation on the bird
-      var animation = this.add.tween(this.bird);
-
-      // Change the angle of the bird to -20° in 100 milliseconds
-      animation.to({ angle: -20 }, 100);
-
-      // And start the animation
-      animation.start();
-
-      this.jumpSound.play();
-    }
-
-    // Restart the game
-
-  }, {
-    key: 'restartGame',
-    value: function restartGame() {
-      // Start the 'main' state, which restarts the game
-      this.state.start('Flappy');
-      this.music.stop();
-      this.dieSound.play();
-    }
-  }, {
-    key: 'addOnePipe',
-    value: function addOnePipe(x, y) {
-      // Create a pipe at the position x and y
-      this.pipe = this.add.sprite(x, y, 'pipe');
-      // Add the pipe to our previously created group
-      this.pipes.add(this.pipe);
-      // Enable physics on the pipe
-      this.physics.arcade.enable(this.pipe);
-      // Add velocity to the pipe to make it move left
-      this.pipe.body.velocity.x = -200;
-      // Automatically kill the pipe when it's no longer visible
-      this.pipe.checkWorldBounds = true;
-      this.pipe.outOfBoundsKill = true;
-    }
-  }, {
-    key: 'addRowOfPipes',
-    value: function addRowOfPipes() {
-      this.score += 1;
-      this.labelScore.text = this.score;
-      // Randomly pick a number between 1 and 5
-      // This will be the hole position
-      this.hole = Math.floor(Math.random() * 5) + 1;
-      // Add the 6 pipes
-      // With one big hole at position 'hole' and 'hole + 1'
-      for (var i = 0; i < 20; i++) {
-        if (i !== this.hole && i !== this.hole + 1) {
-          this.addOnePipe(800, i * 60 + 10);
-        }
-        if (this.score > 5) {
-          this.time.events.remove(this.timer);
-        }
-      }
-    }
-  }, {
-    key: 'hitPipe',
-    value: function hitPipe() {
-      // If the bird has already hit a pipe, do nothing
-      // It means the bird is already falling off the screen
-      if (this.bird.alive === false) {
-        return;
-      }
-      // Set the alive property of the bird to false
-      this.bird.alive = false;
-
-      // Prevent new pipes from appearing
-      this.time.events.remove(this.timer);
-
-      // Go through all the pipes, and stop their movement
-      this.pipes.forEach(function (p) {
-        p.body.velocity.x = 0;
-      }, this);
-      this.hitSound.play();
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Boot');
-      // this.resetGame();
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.State);
-
-exports.default = _class;
-
-/***/ }),
+/* 124 */,
+/* 125 */,
 /* 126 */
-/* unknown exports provided */
-/* all exports used */
-/*!****************************!*\
-  !*** ./src/states/Game.js ***!
-  \****************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-var _Mushroom = __webpack_require__(/*! ../sprites/Mushroom */ 122);
-
-var _Mushroom2 = _interopRequireDefault(_Mushroom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* globals __DEV__ */
-
-
-var _class = function (_Phaser$State) {
-  _inherits(_class, _Phaser$State);
-
-  function _class() {
-    _classCallCheck(this, _class);
-
-    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-  }
-
-  _createClass(_class, [{
-    key: 'init',
-    value: function init() {}
-  }, {
-    key: 'preload',
-    value: function preload() {}
-  }, {
-    key: 'create',
-    value: function create() {
-      var bannerText = 'Phaser + ES6 + Webpack';
-      var banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText);
-      banner.font = 'Bangers';
-      banner.padding.set(10, 16);
-      banner.fontSize = 40;
-      banner.fill = '#77BFA3';
-      banner.smoothed = false;
-      banner.anchor.setTo(0.5);
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-
-      this.mushroom = new _Mushroom2.default({
-        game: this,
-        x: this.world.centerX,
-        y: this.world.centerY,
-        asset: 'mushroom'
-      });
-
-      this.game.add.existing(this.mushroom);
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.escape.isDown) {
-        this.goHome();
-      }
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Boot');
-      // this.resetGame();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      if (true) {
-        this.game.debug.spriteInfo(this.mushroom, 32, 32);
-      }
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.State);
-
-exports.default = _class;
-
-/***/ }),
-/* 127 */
-/* unknown exports provided */
-/* all exports used */
-/*!*****************************!*\
-  !*** ./src/states/Luigi.js ***!
-  \*****************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! pixi */ 41);
-
-__webpack_require__(/*! p2 */ 42);
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$State) {
-  _inherits(_class, _Phaser$State);
-
-  function _class() {
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
-
-    _this.cursors = null;
-    _this.menu = null;
-    _this.player = null;
-    _this.platforms = null;
-    _this.star = null;
-    _this.stars = null;
-    _this.score = 0;
-    _this.scoreText = null;
-    _this.paused = false;
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'preload',
-    value: function preload() {
-      this.load.image('sky', 'assets/sky.png');
-      this.load.image('menu', 'assets/menubar.png');
-      this.load.image('dude2', 'assets/sprite.png');
-      this.load.image('ground', 'assets/platform.png');
-      this.load.image('star', 'assets/star.png');
-      this.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-    }
-  }, {
-    key: 'create',
-    value: function create() {
-      // this.add.sprite(0, 0, 'star');
-      //  We're going to be using physics, so enable the Arcade Physics system
-      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
-
-      //  A simple background for our game
-      this.add.sprite(0, 0, 'sky');
-
-      //  The platforms group contains the ground and the 2 ledges we can jump on
-      this.platforms = this.add.group();
-
-      //  We will enable physics for any object that is created in this group
-      this.platforms.enableBody = true;
-
-      // Here we create the ground.
-      this.ground = this.platforms.create(0, this.world.height - 64, 'ground');
-
-      //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-      this.ground.scale.setTo(2, 2);
-
-      //  This stops it from falling away when you jump on it
-      this.ground.body.immovable = true;
-
-      //  Now let's create two ledges
-      this.ledge = this.platforms.create(400, 400, 'ground');
-
-      this.ledge.body.immovable = true;
-
-      this.ledge = this.platforms.create(-150, 250, 'ground');
-
-      this.ledge.body.immovable = true;
-
-      // The player and its settings
-      this.player = this.add.sprite(32, this.world.height - 150, 'dude');
-
-      //  We need to enable physics on the player
-      this.physics.arcade.enable(this.player);
-
-      //  Player physics properties. Give the little guy a slight bounce.
-      this.player.body.bounce.y = 0.2;
-      this.player.body.gravity.y = 200;
-      this.player.body.collideWorldBounds = true;
-
-      //  Our two animations, walking left and right.
-      this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-      this.player.animations.add('right', [5, 6, 7, 8], 10, true);
-      this.stage.disableVisibilityChange = true;
-
-      //  Our controls.
-      this.cursors = this.input.keyboard.createCursorKeys();
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-      this.pause = this.input.keyboard.addKey(_phaser2.default.Keyboard.P);
-      this.unpause = this.input.keyboard.addKey(_phaser2.default.Keyboard.S);
-
-      this.stars = this.add.group();
-
-      this.stars.enableBody = true;
-
-      //  Here we'll create 12 of them evenly spaced apart
-      for (var i = 0; i < 12; i++) {
-        //  Create a star inside of the 'stars' group
-        this.star = this.stars.create(i * 70, 0, 'star');
-
-        //  Let gravity do its thing
-
-        this.star.body.gravity.y = 200;
-
-        //  This just gives each star a slightly random bounce value
-        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
-      }
-      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-      this.resetGame();
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.pause.isDown) {
-        this.physics.arcade.isPaused = true;
-      }
-      if (this.unpause.isDown) {
-        this.physics.arcade.isPaused = false;
-      }
-
-      if (this.escape.isDown) {
-        this.goHome();
-      } else if (this.score < 120) {
-        //  Collide the player and the stars with the platforms
-        this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
-        //  Reset the players velocity (movement)
-        this.player.body.velocity.x = 0;
-
-        if (this.cursors.left.isDown) {
-          //  Move to the left
-          this.player.body.velocity.x = -150;
-          this.player.animations.play('left');
-        } else if (this.cursors.right.isDown) {
-          //  Move to the right
-          this.player.body.velocity.x = 150;
-          this.player.animations.play('right');
-        } else {
-          //  Stand still
-          this.player.animations.stop();
-          this.player.frame = 4;
-        }
-
-        //  Allow the player to jump if they are touching the ground.
-        if (this.cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
-          this.player.body.velocity.y = -300;
-        }
-        this.physics.arcade.collide(this.stars, this.platforms);
-        this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
-      } else {
-        this.goHome();
-        this.playerUpdate();
-      }
-      function collectStar(player, star) {
-        star.kill();
-        this.score += 10;
-        this.scoreText.text = 'Score: ' + this.score;
-      }
-    }
-  }, {
-    key: 'playerUpdate',
-    value: function playerUpdate() {
-      window.game.luigiCompleted();
-    }
-  }, {
-    key: 'goMenu',
-    value: function goMenu(menu) {
-      this.state.start('Menu');
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Boot');
-      this.resetGame();
-    }
-  }, {
-    key: 'resetGame',
-    value: function resetGame() {
-      this.stars.removeAll(true);
-      this.score = 0;
-      this.stars.enableBody = true;
-      for (var i = 0; i < 12; i++) {
-        this.star = this.stars.create(i * 70, 0, 'star');
-        this.star.body.gravity.y = 200;
-        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
-      }
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.State);
-
-exports.default = _class;
-
-/***/ }),
-/* 128 */
-/* unknown exports provided */
-/* all exports used */
-/*!****************************!*\
-  !*** ./src/states/Menu.js ***!
-  \****************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Splash = function (_Phaser$State) {
-  _inherits(Splash, _Phaser$State);
-
-  function Splash() {
-    _classCallCheck(this, Splash);
-
-    var _this = _possibleConstructorReturn(this, (Splash.__proto__ || Object.getPrototypeOf(Splash)).call(this));
-
-    _this.text = '';
-    _this.rock = null;
-    _this.button = null;
-    _this.tank = null;
-    _this.bird = null;
-    _this.luigi = null;
-    _this.mushroom = null;
-    _this.tankButton = null;
-    _this.luigiButton = null;
-    _this.flappyButton = null;
-    _this.x = 32;
-    _this.y = 80;
-    _this.music = null;
-    return _this;
-  }
-
-  _createClass(Splash, [{
-    key: 'init',
-    value: function init() {
-      this.titleText = this.make.text(this.world.centerX, 100, 'Tank Destruction\nPress <esc> to exit', {
-        font: 'bold 60pt TheMinion',
-        fill: '#FDFFB5',
-        align: 'center'
-      });
-      this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-        font: 'bold 60pt TheMinion',
-        fill: 'red',
-        align: 'center'
-      });
-      this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
-      this.titleText.anchor.set(0.5);
-      this.optionCount = 1;
-    }
-  }, {
-    key: 'preload',
-    value: function preload() {
-      this.load.image('title', 'assets/logo.png');
-      this.load.image('tank', 'assets/tank.png');
-      this.load.image('startButton', 'assets/power.png');
-      this.load.image('stopButton', 'assets/cancel.png');
-      this.load.image('background', 'assets/options-bg.jpg');
-      this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
-    }
-  }, {
-    key: 'create',
-    value: function create() {
-      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
-      // this.background = this.add.sprite(0, 0, 'background');
-      this.add.sprite(0, 0, 'background');
-
-      // this.stage.disableVisibilityChange = true;
-      this.add.existing(this.titleText);
-      this.add.existing(this.titleText2);
-
-      this.music = this.add.audio('mainTitle');
-
-      this.music.play();
-
-      // You can listen for each of these events from Phaser.Loader
-      this.load.onLoadStart.add(this.loadStart, this);
-      this.load.onFileComplete.add(this.fileComplete, this);
-      this.load.onLoadComplete.add(this.loadComplete, this);
-
-      // Just to kick things off
-      // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-      this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
-      this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
-      // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
-      // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
-
-      this.text = this.add.text({ fill: '#ffffff' });
-      this.player = this.add.sprite(350, 250, 'dude');
-      this.physics.arcade.enable(this.player);
-      this.player.body.collideWorldBounds = true;
-
-      // this.player.animations.add('left', [0, 1, 2, 3], 10, true);
-      // this.player.animations.add('right', [5, 6, 7, 8], 10, true);
-      // this.player.animations.add('up', [0, 1, 2, 3], 10, true);
-      // this.player.animations.add('down', [5, 6, 7, 8], 10, true);
-      this.cursors = this.input.keyboard.createCursorKeys();
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-    }
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.escape.isDown) {
-        this.goHome();
-      }
-
-      this.player.body.velocity.x = 0;
-      this.player.body.velocity.y = 0;
-      // this.physics.arcade.collide(this.button, this.dude);
-
-      if (this.cursors.left.isDown) {
-        //  Move to the left
-        this.player.body.velocity.x = -150;
-
-        this.player.animations.play('left');
-      } else if (this.cursors.right.isDown) {
-        //  Move to the right
-        this.player.body.velocity.x = 150;
-
-        this.player.animations.play('right');
-      } else if (this.cursors.up.isDown) {
-        //  Move to the right
-        this.player.body.velocity.y = -150;
-
-        this.player.animations.play('up');
-      } else if (this.cursors.down.isDown) {
-        //  Move to the right
-        this.player.body.velocity.y = 150;
-
-        this.player.animations.play('down');
-      } else {
-        //  Stand still
-        this.player.animations.stop();
-
-        this.player.frame = 4;
-      }
-      if (this.physics.arcade.collide(this.player, this.tank)) {
-        this.goToTank();
-      }
-    }
-  }, {
-    key: 'goToTank',
-    value: function goToTank() {
-      this.state.start('Tank');
-      this.music.stop();
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Splash');
-      // this.resetGame();
-    }
-  }, {
-    key: 'loadStart',
-    value: function loadStart() {
-      this.text.setText('Loading ...');
-    }
-
-    // This callback is sent the following parameters:
-
-  }, {
-    key: 'fileComplete',
-    value: function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
-      this.text.setText('File Complete: ' + progress + '% - ' + totalLoaded + ' out of ' + totalFiles);
-
-      var newImage = this.add.image(this.x, this.y, cacheKey);
-
-      newImage.scale.set(0.3);
-
-      this.x += newImage.width + 20;
-
-      if (this.x > 700) {
-        this.x = 32;
-        this.y += 332;
-      }
-    }
-  }, {
-    key: 'loadComplete',
-    value: function loadComplete() {
-      this.text.setText('Load Complete');
-    }
-  }]);
-
-  return Splash;
-}(_phaser2.default.State);
-
-exports.default = Splash;
-
-/***/ }),
-/* 129 */
 /* unknown exports provided */
 /* all exports used */
 /*!******************************!*\
@@ -5075,21 +4113,15 @@ var Splash = function (_Phaser$State) {
   _createClass(Splash, [{
     key: 'preload',
     value: function preload() {
-      this.load.image('button', 'assets/star.png');
-      this.load.image('tankButton', 'assets/star.png');
-      this.load.image('tank', 'assets/tank.png');
-      this.load.image('bird', 'assets/bird.png');
-      this.load.image('brick', 'assets/brick.png');
-      this.load.image('luigi', 'assets/luigi.png');
-      this.load.image('mushroom', 'assets/mushroom.png');
-      this.load.image('star', 'assets/star.png');
-      this.load.image('flappyButton', 'assets/bird.png');
-      this.load.image('rock', 'assets/rock.png');
-      this.load.image('mushroom', 'assets/images/mushroom2.png');
-      this.load.image('map', 'assets/grass.png');
-      this.load.image('dude', 'assets/sprite.png');
-      this.load.image('breakoutButton', 'assets/images/mushroom2.png');
-      this.load.audio('mainTitle', 'assets/QuantumLeap.mp3');
+      this.load.image('tank', 'assets/splash/tank.png');
+      this.load.image('bird', 'assets/splash/bird.png');
+      this.load.image('brick', 'assets/splash/brick.png');
+      this.load.image('luigi', 'assets/splash/luigi.png');
+      this.load.image('star', 'assets/splash/star.png');
+      this.load.image('rock', 'assets/splash/rock.png');
+      this.load.image('map', 'assets/splash/grass.png');
+      this.load.image('dude', 'assets/splash/sprite.png');
+      this.load.audio('mainTitle', 'assets/splash/audio/QuantumLeap.mp3');
     }
   }, {
     key: 'create',
@@ -5248,7 +4280,7 @@ var Splash = function (_Phaser$State) {
   }, {
     key: 'goToTank',
     value: function goToTank() {
-      this.state.start('Menu');
+      this.state.start('TankMenu');
       this.music.stop();
     }
   }, {
@@ -5306,273 +4338,10 @@ var Splash = function (_Phaser$State) {
 exports.default = Splash;
 
 /***/ }),
-/* 130 */
-/* unknown exports provided */
-/* all exports used */
-/*!****************************!*\
-  !*** ./src/states/Tank.js ***!
-  \****************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! pixi */ 41);
-
-__webpack_require__(/*! p2 */ 42);
-
-var _phaser = __webpack_require__(/*! phaser */ 18);
-
-var _phaser2 = _interopRequireDefault(_phaser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _class = function (_Phaser$State) {
-  _inherits(_class, _Phaser$State);
-
-  function _class() {
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
-
-    _this.tank = null;
-    _this.turret = null;
-    _this.flame = null;
-    _this.bullet = null;
-    _this.background = null;
-    _this.targets = null;
-    _this.power = 300;
-    _this.powerText = null;
-    _this.cursors = null;
-    _this.fireButton = null;
-    _this.targetCount = 4;
-    _this.tankScore = 0;
-    return _this;
-  }
-
-  _createClass(_class, [{
-    key: 'init',
-    value: function init() {
-      this.game.renderer.renderSession.roundPixels = true;
-
-      this.game.world.setBounds(0, 0, 992, 480);
-
-      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
-      this.physics.arcade.gravity.y = 200;
-    }
-  }, {
-    key: 'preload',
-    value: function preload() {
-      //  We need this because the assets are on Amazon S3
-      //  Remove the next 2 lines if running locally
-      // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
-      // this.load.crossOrigin = 'anonymous';
-      this.load.image('tank', 'assets/bird.png');
-      this.load.image('turret', 'assets/turret.png');
-      this.load.image('bullet', 'assets/frenz.jpg');
-      this.load.image('background1', 'assets/background.png');
-      this.load.image('flame', 'assets/flame.png');
-      this.load.image('target', 'assets/target.png');
-      this.load.audio('hit', 'assets/nes-05-03.wav');
-      //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
-    }
-  }, {
-    key: 'create',
-    value: function create() {
-      //  Simple but pretty background
-      this.background = this.add.sprite(0, 0, 'background1');
-      this.hitSound = this.add.audio('hit');
-      //  Something to shoot at :)
-      this.targets = this.add.group(this.game.world, 'targets', false, true, _phaser2.default.Physics.ARCADE);
-      //  A single bullet that the tank will fire
-      this.bullet = this.add.sprite(0, 0, 'bullet');
-      this.bullet.exists = false;
-      this.physics.arcade.enable(this.bullet);
-
-      //  The body of the tank
-      this.tank = this.add.sprite(24, 383, 'tank');
-
-      //  The turret which we rotate (offset 30x14 from the tank)
-      this.turret = this.add.sprite(this.tank.x + 30, this.tank.y + 14, 'turret');
-
-      //  When we shoot this little flame sprite will appear briefly at the end of the turret
-      this.flame = this.add.sprite(0, 0, 'flame');
-      this.flame.anchor.set(0.5);
-      this.flame.visible = false;
-
-      //  Used to display the power of the shot
-      this.power = 300;
-      this.powerText = this.add.text(8, 8, 'Power: 300', { font: '18px Arial', fill: '#ffffff' });
-      this.powerText.setShadow(1, 1, 'rgba(0, 0, 0, 0.8)', 1);
-      this.powerText.fixedToCamera = true;
-
-      //  Some basic controls
-      this.cursors = this.input.keyboard.createCursorKeys();
-      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
-
-      this.fireButton = this.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
-      this.fireButton.onDown.add(this.fire, this);
-      this.pause = this.input.keyboard.addKey(_phaser2.default.Keyboard.P);
-      this.unpause = this.input.keyboard.addKey(_phaser2.default.Keyboard.S);
-      this.resetGame();
-      console.log(this.tankScore);
-    }
-  }, {
-    key: 'fire',
-    value: function fire() {
-      this.hitSound.play();
-      if (this.bullet.exists) {
-        return;
-      }
-      //  Re-position the bullet where the turret is
-      this.bullet.reset(this.turret.x, this.turret.y);
-      //  Now work out where the END of the turret is
-      var p = new _phaser2.default.Point(this.turret.x, this.turret.y);
-      p.rotate(p.x, p.y, this.turret.rotation, false, 34);
-
-      //  And position the flame sprite there
-      this.flame.x = p.x;
-      this.flame.y = p.y;
-      this.flame.alpha = 1;
-      this.flame.visible = true;
-
-      //  Boom
-      this.add.tween(this.flame).to({ alpha: 0 }, 100, 'Linear', true);
-
-      //  So we can see what's going on when the bullet leaves the screen
-      this.camera.follow(this.bullet);
-
-      //  Our launch trajectory is based on the angle of the turret and the power
-      this.physics.arcade.velocityFromRotation(this.turret.rotation, this.power, this.bullet.body.velocity);
-    }
-
-    /**
-     * Called by physics.arcade.overlap if the bullet and a target overlap
-     *
-     * @method hitTarget
-     * @param {Phaser.Sprite} bullet - A reference to the bullet (same as this.bullet)
-     * @param {Phaser.Sprite} target - The target the bullet hit
-     */
-
-  }, {
-    key: 'hitTarget',
-    value: function hitTarget(bullet, target) {
-      target.kill();
-      this.removeBullet();
-      this.targetCount = this.targetCount - 1;
-    }
-
-    /**
-     * Removes the bullet, stops the camera following and tweens the camera back to the tank.
-     * Have put this into its own method as it's called from several places.
-     *
-     * @method removeBullet
-     */
-
-  }, {
-    key: 'removeBullet',
-    value: function removeBullet() {
-      this.bullet.kill();
-      this.camera.follow();
-      this.add.tween(this.camera).to({ x: 0 }, 1000, 'Quint', true, 1000);
-    }
-  }, {
-    key: 'goHome',
-    value: function goHome() {
-      this.state.start('Menu');
-      this.resetGame();
-    }
-  }, {
-    key: 'playerUpdate',
-    value: function playerUpdate() {
-      if (this.tankScore === 0 || this.tankScore > 1) {
-        this.tankScore = this.tankScore + 1;
-      }
-    }
-  }, {
-    key: 'resetGame',
-    value: function resetGame() {
-      this.targets.removeAll(true);
-      this.targetCount = 4;
-      this.targets.create(300, 390, 'target');
-      this.targets.create(500, 390, 'target');
-      this.targets.create(700, 390, 'target');
-      this.targets.create(900, 390, 'target');
-
-      //  Stop gravity from pulling them away
-      this.targets.setAll('body.allowGravity', false);
-    }
-
-    /**
-     * Core update loop. Handles collision checks and player input.
-     *
-     * @method update
-     */
-
-  }, {
-    key: 'update',
-    value: function update() {
-      if (this.pause.isDown) {
-        this.physics.arcade.isPaused = true;
-      }
-      if (this.unpause.isDown) {
-        this.physics.arcade.isPaused = false;
-      }
-      if (this.escape.isDown) {
-        this.goHome();
-      } else if (this.targetCount > 0) {
-        if (this.bullet.exists) {
-          if (this.bullet.y > 420) {
-            //  Simple check to see if it's fallen too low
-            this.removeBullet();
-          } else {
-            //  Bullet vs. the Targets
-            this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
-          }
-        } else {
-          //  Allow them to set the power between 100 and 600
-          if (this.cursors.left.isDown && this.power > 100) {
-            this.power -= 2;
-          } else if (this.cursors.right.isDown && this.power < 600) {
-            this.power += 2;
-          }
-
-          if (this.cursors.up.isDown && this.turret.angle > -90) {
-            this.turret.angle--;
-          } else if (this.cursors.down.isDown && this.turret.angle < 0) {
-            this.turret.angle++;
-          }
-
-          //  Update the text
-          this.powerText.text = 'Power: ' + this.power;
-        }
-      } else {
-        this.goHome();
-        this.playerUpdate();
-        console.log(this.tankScore);
-      }
-    }
-  }]);
-
-  return _class;
-}(_phaser2.default.State);
-
-exports.default = _class;
-;
-
-/***/ }),
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
 /* 131 */
 /* unknown exports provided */
 /* all exports used */
@@ -11323,6 +10092,1071 @@ module.exports = __webpack_require__(/*! ./modules/_core */ 25);
 __webpack_require__(/*! babel-polyfill */120);
 module.exports = __webpack_require__(/*! /Users/jayalan17/Documents/Projects/nxtlvlgame/src/main.js */119);
 
+
+/***/ }),
+/* 317 */,
+/* 318 */
+/* unknown exports provided */
+/* all exports used */
+/*!********************************!*\
+  !*** ./src/states/TankMenu.js ***!
+  \********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _phaser = __webpack_require__(/*! phaser */ 18);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$State) {
+  _inherits(_class, _Phaser$State);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+
+    _this.text = '';
+    _this.rock = null;
+    _this.button = null;
+    _this.tank = null;
+    _this.bird = null;
+    _this.luigi = null;
+    _this.mushroom = null;
+    _this.tankButton = null;
+    _this.luigiButton = null;
+    _this.flappyButton = null;
+    _this.x = 32;
+    _this.y = 80;
+    _this.music = null;
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'init',
+    value: function init() {
+      this.titleText = this.make.text(this.world.centerX, 100, 'Tank Destruction\nPress <esc> to exit', {
+        font: 'bold 60pt TheMinion',
+        fill: '#FDFFB5',
+        align: 'center'
+      });
+      this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
+        font: 'bold 60pt TheMinion',
+        fill: 'red',
+        align: 'center'
+      });
+      this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+      this.titleText.anchor.set(0.5);
+      this.optionCount = 1;
+    }
+  }, {
+    key: 'preload',
+    value: function preload() {
+      this.load.image('startButton', 'assets/tankMenu/power.png');
+      this.load.image('stopButton', 'assets/tankMenu/cancel.png');
+      this.load.image('background', 'assets/tankMenu/paperBG.jpg');
+      this.load.audio('mainTitle', 'assets/audio/QuantumLeap.mp3');
+    }
+  }, {
+    key: 'create',
+    value: function create() {
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
+      // this.background = this.add.sprite(0, 0, 'background');
+      this.add.sprite(0, 0, 'background');
+
+      // this.stage.disableVisibilityChange = true;
+      this.add.existing(this.titleText);
+      this.add.existing(this.titleText2);
+
+      this.music = this.add.audio('mainTitle');
+
+      this.music.play();
+
+      // You can listen for each of these events from Phaser.Loader
+      this.load.onLoadStart.add(this.loadStart, this);
+      this.load.onFileComplete.add(this.fileComplete, this);
+      this.load.onLoadComplete.add(this.loadComplete, this);
+
+      // Just to kick things off
+      // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
+      this.startButton = this.add.button(100, 400, 'startButton', this.goToTank, this, 2, 1, 0);
+      this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
+      // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
+      // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
+
+      this.text = this.add.text({ fill: '#ffffff' });
+      this.player = this.add.sprite(350, 250, 'dude');
+      this.physics.arcade.enable(this.player);
+      this.player.body.collideWorldBounds = true;
+
+      // this.player.animations.add('left', [0, 1, 2, 3], 10, true);
+      // this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+      // this.player.animations.add('up', [0, 1, 2, 3], 10, true);
+      // this.player.animations.add('down', [5, 6, 7, 8], 10, true);
+      this.cursors = this.input.keyboard.createCursorKeys();
+      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      if (this.escape.isDown) {
+        this.goHome();
+      }
+
+      this.player.body.velocity.x = 0;
+      this.player.body.velocity.y = 0;
+      // this.physics.arcade.collide(this.button, this.dude);
+
+      if (this.cursors.left.isDown) {
+        //  Move to the left
+        this.player.body.velocity.x = -150;
+
+        this.player.animations.play('left');
+      } else if (this.cursors.right.isDown) {
+        //  Move to the right
+        this.player.body.velocity.x = 150;
+
+        this.player.animations.play('right');
+      } else if (this.cursors.up.isDown) {
+        //  Move to the right
+        this.player.body.velocity.y = -150;
+
+        this.player.animations.play('up');
+      } else if (this.cursors.down.isDown) {
+        //  Move to the right
+        this.player.body.velocity.y = 150;
+
+        this.player.animations.play('down');
+      } else {
+        //  Stand still
+        this.player.animations.stop();
+
+        this.player.frame = 4;
+      }
+      if (this.physics.arcade.collide(this.player, this.tank)) {
+        this.goToTank();
+      }
+    }
+  }, {
+    key: 'goToTank',
+    value: function goToTank() {
+      this.state.start('Tank');
+      this.music.stop();
+    }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('Splash');
+      // this.resetGame();
+    }
+  }, {
+    key: 'loadStart',
+    value: function loadStart() {
+      this.text.setText('Loading ...');
+    }
+
+    // This callback is sent the following parameters:
+
+  }, {
+    key: 'fileComplete',
+    value: function fileComplete(progress, cacheKey, success, totalLoaded, totalFiles) {
+      this.text.setText('File Complete: ' + progress + '% - ' + totalLoaded + ' out of ' + totalFiles);
+
+      var newImage = this.add.image(this.x, this.y, cacheKey);
+
+      newImage.scale.set(0.3);
+
+      this.x += newImage.width + 20;
+
+      if (this.x > 700) {
+        this.x = 32;
+        this.y += 332;
+      }
+    }
+  }, {
+    key: 'loadComplete',
+    value: function loadComplete() {
+      this.text.setText('Load Complete');
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.State);
+
+exports.default = _class;
+
+/***/ }),
+/* 319 */
+/* unknown exports provided */
+/* all exports used */
+/*!********************************!*\
+  !*** ./src/states/Breakout.js ***!
+  \********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(/*! pixi */ 41);
+
+__webpack_require__(/*! p2 */ 42);
+
+var _phaser = __webpack_require__(/*! phaser */ 18);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$State) {
+  _inherits(_class, _Phaser$State);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+
+    _this.music = null;
+    _this.score = 0;
+    _this.scoreText = null;
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'preload',
+    value: function preload() {
+      this.load.image('paddle', 'assets/breakout/paddle.png');
+      this.load.image('brick', 'assets/breakout/brick.png');
+      this.load.image('sky', 'assets/breakout/starsBG.png');
+      this.load.image('ball', 'assets/breakout/ball.png');
+      this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+      this.load.audio('music', 'assets/audio/StElmo.mp3');
+    }
+  }, {
+    key: 'create',
+    value: function create() {
+      this.stage.backgroundColor = '#4F77A2';
+      this.add.sprite(0, 0, 'sky');
+      this.hitSound = this.add.audio('hit');
+
+      this.music = this.add.audio('music');
+      this.music.play();
+
+      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#999' });
+
+      // Start the Arcade physics system (for movements and collisions)
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
+
+      // Add the physics engine to all the game objetcs
+      this.world.enableBody = true;
+
+      this.left = this.input.keyboard.addKey(_phaser2.default.Keyboard.LEFT);
+      this.right = this.input.keyboard.addKey(_phaser2.default.Keyboard.RIGHT);
+      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
+      this.paddle = this.add.sprite(200, 550, 'paddle');
+      this.paddle.body.immovable = true;
+      this.paddle.body.collideWorldBounds = true;
+
+      this.bricks = this.add.group();
+
+      for (var i = 0; i < 12; i++) {
+        for (var j = 0; j < 6; j++) {
+          // Create the brick at the correct position
+          var brick = this.add.sprite(55 + i * 60, 55 + j * 35, 'brick');
+
+          // Make sure the brick won't move when the ball hits it
+          brick.body.immovable = true;
+
+          // Add the brick to the group
+          this.bricks.add(brick);
+        }
+      }
+      this.ball = this.add.sprite(200, 500, 'ball');
+
+      // Give the ball some initial speed
+      this.ball.body.velocity.x = 200;
+      this.ball.body.velocity.y = 200;
+
+      // Make sure the ball will bounce when hitting something
+      this.ball.body.bounce.setTo(1);
+      this.ball.body.collideWorldBounds = true;
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      if (this.escape.isDown) {
+        this.goHome();
+      }
+
+      if (this.left.isDown) {
+        this.paddle.body.velocity.x = -300;
+      } else if (this.right.isDown) {
+        this.paddle.body.velocity.x = 300;
+      } else this.paddle.body.velocity.x = 0;
+      // Add collisions between the paddle and the ball
+      this.physics.arcade.collide(this.paddle, this.ball);
+
+      // Call the 'hit' function when the ball hits a brick
+      this.physics.arcade.collide(this.ball, this.bricks, this.hit, null, this);
+
+      // Restart the game if the ball is below the paddle
+      if (this.ball.y > this.paddle.y) {
+        this.state.start('BreakOut');
+        this.music.stop();
+        this.score = 0;
+      }
+    }
+
+    // New function that removes a brick from the game
+
+  }, {
+    key: 'hit',
+    value: function hit(ball, brick) {
+      brick.kill();
+      this.hitSound.play();
+      this.score += 10;
+      this.scoreText.text = 'Score: ' + this.score;
+    }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('Boot');
+      // this.resetGame();
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.State);
+
+exports.default = _class;
+;
+
+/***/ }),
+/* 320 */
+/* unknown exports provided */
+/* all exports used */
+/*!******************************!*\
+  !*** ./src/states/Flappy.js ***!
+  \******************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(/*! pixi */ 41);
+
+__webpack_require__(/*! p2 */ 42);
+
+var _phaser = __webpack_require__(/*! phaser */ 18);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$State) {
+  _inherits(_class, _Phaser$State);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+
+    _this.pipes = null;
+    _this.music = null;
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'preload',
+    value: function preload() {
+      this.load.image('bird', 'assets/flappy/frenz.jpg');
+      this.load.image('pipe', 'assets/flappy/frog.png');
+      this.load.image('sky', 'assets/flappy/sky.png');
+      this.load.audio('jump', 'assets/audio/jump_07.wav');
+      this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+      this.load.audio('music', 'assets/audio/SouthPark.mp3');
+    }
+  }, {
+    key: 'create',
+    value: function create() {
+      // Change the background color of the game to blue
+      this.stage.backgroundColor = '#48A0D0';
+      this.add.sprite(0, 0, 'sky');
+
+      // Create an empty group
+      this.pipes = this.add.group();
+
+      this.jumpSound = this.add.audio('jump');
+      this.hitSound = this.add.audio('hit');
+      this.dieSound = this.add.audio('hit');
+      this.music = this.add.audio('music');
+
+      this.music.play();
+
+      // Set the physics system
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
+
+      // Display the bird at the position x=100 and y=245
+      this.bird = this.add.sprite(100, 245, 'bird');
+
+      // Add physics to the bird
+      // Needed for: movements, gravity, collisions, etc.
+      this.physics.arcade.enable(this.bird);
+
+      // Add gravity to the bird to make it fall
+      this.bird.body.gravity.y = 1000;
+
+      // Call the 'jump' function when the spacekey is hit
+      var spaceKey = this.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
+      spaceKey.onDown.add(this.jump, this);
+      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
+
+      this.timer = this.time.events.loop(1500, this.addRowOfPipes, this);
+      this.score = 0;
+      this.labelScore = this.add.text(20, 20, '0', { font: '30px Arial', fill: '#ffffff' });
+
+      // Move the anchor to the left and downward
+      this.bird.anchor.setTo(-0.2, 0.5);
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      if (this.escape.isDown) {
+        this.goHome();
+        // If the bird is out of the screen (too high or too low)
+        // Call the 'restartGame' function
+      } else if (this.bird.y < 0 || this.bird.y > 800) {
+        this.restartGame();
+      }
+      this.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null, this);
+      if (this.bird.angle < 20) {
+        this.bird.angle += 1;
+      }
+    }
+    // Make the bird jump
+
+  }, {
+    key: 'jump',
+    value: function jump() {
+      if (this.bird.alive === false) {
+        return;
+      }
+      // Add a vertical velocity to the bird
+      this.bird.body.velocity.y = -350;
+      // Create an animation on the bird
+      var animation = this.add.tween(this.bird);
+
+      // Change the angle of the bird to -20° in 100 milliseconds
+      animation.to({ angle: -20 }, 100);
+
+      // And start the animation
+      animation.start();
+
+      this.jumpSound.play();
+    }
+
+    // Restart the game
+
+  }, {
+    key: 'restartGame',
+    value: function restartGame() {
+      // Start the 'main' state, which restarts the game
+      this.state.start('Flappy');
+      this.music.stop();
+      this.dieSound.play();
+    }
+  }, {
+    key: 'addOnePipe',
+    value: function addOnePipe(x, y) {
+      // Create a pipe at the position x and y
+      this.pipe = this.add.sprite(x, y, 'pipe');
+      // Add the pipe to our previously created group
+      this.pipes.add(this.pipe);
+      // Enable physics on the pipe
+      this.physics.arcade.enable(this.pipe);
+      // Add velocity to the pipe to make it move left
+      this.pipe.body.velocity.x = -200;
+      // Automatically kill the pipe when it's no longer visible
+      this.pipe.checkWorldBounds = true;
+      this.pipe.outOfBoundsKill = true;
+    }
+  }, {
+    key: 'addRowOfPipes',
+    value: function addRowOfPipes() {
+      this.score += 1;
+      this.labelScore.text = this.score;
+      // Randomly pick a number between 1 and 5
+      // This will be the hole position
+      this.hole = Math.floor(Math.random() * 5) + 1;
+      // Add the 6 pipes
+      // With one big hole at position 'hole' and 'hole + 1'
+      for (var i = 0; i < 20; i++) {
+        if (i !== this.hole && i !== this.hole + 1) {
+          this.addOnePipe(800, i * 60 + 10);
+        }
+        if (this.score > 5) {
+          this.time.events.remove(this.timer);
+        }
+      }
+    }
+  }, {
+    key: 'hitPipe',
+    value: function hitPipe() {
+      // If the bird has already hit a pipe, do nothing
+      // It means the bird is already falling off the screen
+      if (this.bird.alive === false) {
+        return;
+      }
+      // Set the alive property of the bird to false
+      this.bird.alive = false;
+
+      // Prevent new pipes from appearing
+      this.time.events.remove(this.timer);
+
+      // Go through all the pipes, and stop their movement
+      this.pipes.forEach(function (p) {
+        p.body.velocity.x = 0;
+      }, this);
+      this.hitSound.play();
+    }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('Boot');
+      // this.resetGame();
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.State);
+
+exports.default = _class;
+
+/***/ }),
+/* 321 */
+/* unknown exports provided */
+/* all exports used */
+/*!*****************************!*\
+  !*** ./src/states/Luigi.js ***!
+  \*****************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(/*! pixi */ 41);
+
+__webpack_require__(/*! p2 */ 42);
+
+var _phaser = __webpack_require__(/*! phaser */ 18);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$State) {
+  _inherits(_class, _Phaser$State);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+
+    _this.cursors = null;
+    _this.menu = null;
+    _this.player = null;
+    _this.platforms = null;
+    _this.star = null;
+    _this.stars = null;
+    _this.score = 0;
+    _this.scoreText = null;
+    _this.paused = false;
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'preload',
+    value: function preload() {
+      this.load.image('sky', 'assets/luigi/sky.png');
+      this.load.image('ground', 'assets/luigi/platform.png');
+      this.load.image('star', 'assets/luigi/star.png');
+      this.load.spritesheet('dude', 'assets/luigi/dude.png', 32, 48);
+    }
+  }, {
+    key: 'create',
+    value: function create() {
+      // this.add.sprite(0, 0, 'star');
+      //  We're going to be using physics, so enable the Arcade Physics system
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
+
+      //  A simple background for our game
+      this.add.sprite(0, 0, 'sky');
+
+      //  The platforms group contains the ground and the 2 ledges we can jump on
+      this.platforms = this.add.group();
+
+      //  We will enable physics for any object that is created in this group
+      this.platforms.enableBody = true;
+
+      // Here we create the ground.
+      this.ground = this.platforms.create(0, this.world.height - 64, 'ground');
+
+      //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+      this.ground.scale.setTo(2, 2);
+
+      //  This stops it from falling away when you jump on it
+      this.ground.body.immovable = true;
+
+      //  Now let's create two ledges
+      this.ledge = this.platforms.create(400, 400, 'ground');
+
+      this.ledge.body.immovable = true;
+
+      this.ledge = this.platforms.create(-150, 250, 'ground');
+
+      this.ledge.body.immovable = true;
+
+      // The player and its settings
+      this.player = this.add.sprite(32, this.world.height - 150, 'dude');
+
+      //  We need to enable physics on the player
+      this.physics.arcade.enable(this.player);
+
+      //  Player physics properties. Give the little guy a slight bounce.
+      this.player.body.bounce.y = 0.2;
+      this.player.body.gravity.y = 200;
+      this.player.body.collideWorldBounds = true;
+
+      //  Our two animations, walking left and right.
+      this.player.animations.add('left', [0, 1, 2, 3], 10, true);
+      this.player.animations.add('right', [5, 6, 7, 8], 10, true);
+      this.stage.disableVisibilityChange = true;
+
+      //  Our controls.
+      this.cursors = this.input.keyboard.createCursorKeys();
+      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
+      this.pause = this.input.keyboard.addKey(_phaser2.default.Keyboard.P);
+      this.unpause = this.input.keyboard.addKey(_phaser2.default.Keyboard.S);
+
+      this.stars = this.add.group();
+
+      this.stars.enableBody = true;
+
+      //  Here we'll create 12 of them evenly spaced apart
+      for (var i = 0; i < 12; i++) {
+        //  Create a star inside of the 'stars' group
+        this.star = this.stars.create(i * 70, 0, 'star');
+
+        //  Let gravity do its thing
+
+        this.star.body.gravity.y = 200;
+
+        //  This just gives each star a slightly random bounce value
+        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
+      }
+      this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+      this.resetGame();
+    }
+  }, {
+    key: 'update',
+    value: function update() {
+      if (this.pause.isDown) {
+        this.physics.arcade.isPaused = true;
+      }
+      if (this.unpause.isDown) {
+        this.physics.arcade.isPaused = false;
+      }
+
+      if (this.escape.isDown) {
+        this.goHome();
+      } else if (this.score < 120) {
+        //  Collide the player and the stars with the platforms
+        this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
+        //  Reset the players velocity (movement)
+        this.player.body.velocity.x = 0;
+
+        if (this.cursors.left.isDown) {
+          //  Move to the left
+          this.player.body.velocity.x = -150;
+          this.player.animations.play('left');
+        } else if (this.cursors.right.isDown) {
+          //  Move to the right
+          this.player.body.velocity.x = 150;
+          this.player.animations.play('right');
+        } else {
+          //  Stand still
+          this.player.animations.stop();
+          this.player.frame = 4;
+        }
+
+        //  Allow the player to jump if they are touching the ground.
+        if (this.cursors.up.isDown && this.player.body.touching.down && this.hitPlatform) {
+          this.player.body.velocity.y = -300;
+        }
+        this.physics.arcade.collide(this.stars, this.platforms);
+        this.physics.arcade.overlap(this.player, this.stars, collectStar, null, this);
+      } else {
+        this.goHome();
+        this.playerUpdate();
+      }
+      function collectStar(player, star) {
+        star.kill();
+        this.score += 10;
+        this.scoreText.text = 'Score: ' + this.score;
+      }
+    }
+  }, {
+    key: 'playerUpdate',
+    value: function playerUpdate() {
+      window.game.luigiCompleted();
+    }
+  }, {
+    key: 'goMenu',
+    value: function goMenu(menu) {
+      this.state.start('Menu');
+    }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('Boot');
+      this.resetGame();
+    }
+  }, {
+    key: 'resetGame',
+    value: function resetGame() {
+      this.stars.removeAll(true);
+      this.score = 0;
+      this.stars.enableBody = true;
+      for (var i = 0; i < 12; i++) {
+        this.star = this.stars.create(i * 70, 0, 'star');
+        this.star.body.gravity.y = 200;
+        this.star.body.bounce.y = 0.2 + Math.random() * 0.2;
+      }
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.State);
+
+exports.default = _class;
+
+/***/ }),
+/* 322 */
+/* unknown exports provided */
+/* all exports used */
+/*!****************************!*\
+  !*** ./src/states/Tank.js ***!
+  \****************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(/*! pixi */ 41);
+
+__webpack_require__(/*! p2 */ 42);
+
+var _phaser = __webpack_require__(/*! phaser */ 18);
+
+var _phaser2 = _interopRequireDefault(_phaser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _class = function (_Phaser$State) {
+  _inherits(_class, _Phaser$State);
+
+  function _class() {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+
+    _this.tank = null;
+    _this.turret = null;
+    _this.flame = null;
+    _this.bullet = null;
+    _this.background = null;
+    _this.targets = null;
+    _this.power = 300;
+    _this.powerText = null;
+    _this.cursors = null;
+    _this.fireButton = null;
+    _this.targetCount = 4;
+    _this.tankScore = 0;
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'init',
+    value: function init() {
+      this.game.renderer.renderSession.roundPixels = true;
+
+      this.game.world.setBounds(0, 0, 992, 480);
+
+      this.physics.startSystem(_phaser2.default.Physics.ARCADE);
+      this.physics.arcade.gravity.y = 200;
+    }
+  }, {
+    key: 'preload',
+    value: function preload() {
+      //  We need this because the assets are on Amazon S3
+      //  Remove the next 2 lines if running locally
+      // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
+      // this.load.crossOrigin = 'anonymous';
+      this.load.image('tank', 'assets/tank.png');
+      this.load.image('turret', 'assets/turret.png');
+      this.load.image('bullet', 'assets/bullet.png');
+      this.load.image('background1', 'assets/background.png');
+      this.load.image('flame', 'assets/flame.png');
+      this.load.image('target', 'assets/target.png');
+      this.load.audio('hit', 'assets/audio/nes-05-03.wav');
+      //  Note: Graphics from Amiga Tanx Copyright 1991 Gary Roberts
+    }
+  }, {
+    key: 'create',
+    value: function create() {
+      //  Simple but pretty background
+      this.background = this.add.sprite(0, 0, 'background1');
+      this.hitSound = this.add.audio('hit');
+      //  Something to shoot at :)
+      this.targets = this.add.group(this.game.world, 'targets', false, true, _phaser2.default.Physics.ARCADE);
+      //  A single bullet that the tank will fire
+      this.bullet = this.add.sprite(0, 0, 'bullet');
+      this.bullet.exists = false;
+      this.physics.arcade.enable(this.bullet);
+
+      //  The body of the tank
+      this.tank = this.add.sprite(24, 383, 'tank');
+
+      //  The turret which we rotate (offset 30x14 from the tank)
+      this.turret = this.add.sprite(this.tank.x + 30, this.tank.y + 14, 'turret');
+
+      //  When we shoot this little flame sprite will appear briefly at the end of the turret
+      this.flame = this.add.sprite(0, 0, 'flame');
+      this.flame.anchor.set(0.5);
+      this.flame.visible = false;
+
+      //  Used to display the power of the shot
+      this.power = 300;
+      this.powerText = this.add.text(8, 8, 'Power: 300', { font: '18px Arial', fill: '#ffffff' });
+      this.powerText.setShadow(1, 1, 'rgba(0, 0, 0, 0.8)', 1);
+      this.powerText.fixedToCamera = true;
+
+      //  Some basic controls
+      this.cursors = this.input.keyboard.createCursorKeys();
+      this.escape = this.input.keyboard.addKey(_phaser2.default.Keyboard.ESC);
+
+      this.fireButton = this.input.keyboard.addKey(_phaser2.default.Keyboard.SPACEBAR);
+      this.fireButton.onDown.add(this.fire, this);
+      this.pause = this.input.keyboard.addKey(_phaser2.default.Keyboard.P);
+      this.unpause = this.input.keyboard.addKey(_phaser2.default.Keyboard.S);
+      this.resetGame();
+      console.log(this.tankScore);
+    }
+  }, {
+    key: 'fire',
+    value: function fire() {
+      this.hitSound.play();
+      if (this.bullet.exists) {
+        return;
+      }
+      //  Re-position the bullet where the turret is
+      this.bullet.reset(this.turret.x, this.turret.y);
+      //  Now work out where the END of the turret is
+      var p = new _phaser2.default.Point(this.turret.x, this.turret.y);
+      p.rotate(p.x, p.y, this.turret.rotation, false, 34);
+
+      //  And position the flame sprite there
+      this.flame.x = p.x;
+      this.flame.y = p.y;
+      this.flame.alpha = 1;
+      this.flame.visible = true;
+
+      //  Boom
+      this.add.tween(this.flame).to({ alpha: 0 }, 100, 'Linear', true);
+
+      //  So we can see what's going on when the bullet leaves the screen
+      this.camera.follow(this.bullet);
+
+      //  Our launch trajectory is based on the angle of the turret and the power
+      this.physics.arcade.velocityFromRotation(this.turret.rotation, this.power, this.bullet.body.velocity);
+    }
+
+    /**
+     * Called by physics.arcade.overlap if the bullet and a target overlap
+     *
+     * @method hitTarget
+     * @param {Phaser.Sprite} bullet - A reference to the bullet (same as this.bullet)
+     * @param {Phaser.Sprite} target - The target the bullet hit
+     */
+
+  }, {
+    key: 'hitTarget',
+    value: function hitTarget(bullet, target) {
+      target.kill();
+      this.removeBullet();
+      this.targetCount = this.targetCount - 1;
+    }
+
+    /**
+     * Removes the bullet, stops the camera following and tweens the camera back to the tank.
+     * Have put this into its own method as it's called from several places.
+     *
+     * @method removeBullet
+     */
+
+  }, {
+    key: 'removeBullet',
+    value: function removeBullet() {
+      this.bullet.kill();
+      this.camera.follow();
+      this.add.tween(this.camera).to({ x: 0 }, 1000, 'Quint', true, 1000);
+    }
+  }, {
+    key: 'goHome',
+    value: function goHome() {
+      this.state.start('TankMenu');
+      this.resetGame();
+    }
+  }, {
+    key: 'playerUpdate',
+    value: function playerUpdate() {
+      if (this.tankScore === 0 || this.tankScore > 1) {
+        this.tankScore = this.tankScore + 1;
+      }
+    }
+  }, {
+    key: 'resetGame',
+    value: function resetGame() {
+      this.targets.removeAll(true);
+      this.targetCount = 4;
+      this.targets.create(300, 390, 'target');
+      this.targets.create(500, 390, 'target');
+      this.targets.create(700, 390, 'target');
+      this.targets.create(900, 390, 'target');
+
+      //  Stop gravity from pulling them away
+      this.targets.setAll('body.allowGravity', false);
+    }
+
+    /**
+     * Core update loop. Handles collision checks and player input.
+     *
+     * @method update
+     */
+
+  }, {
+    key: 'update',
+    value: function update() {
+      if (this.pause.isDown) {
+        this.physics.arcade.isPaused = true;
+      }
+      if (this.unpause.isDown) {
+        this.physics.arcade.isPaused = false;
+      }
+      if (this.escape.isDown) {
+        this.goHome();
+      } else if (this.targetCount > 0) {
+        if (this.bullet.exists) {
+          if (this.bullet.y > 420) {
+            //  Simple check to see if it's fallen too low
+            this.removeBullet();
+          } else {
+            //  Bullet vs. the Targets
+            this.physics.arcade.overlap(this.bullet, this.targets, this.hitTarget, null, this);
+          }
+        } else {
+          //  Allow them to set the power between 100 and 600
+          if (this.cursors.left.isDown && this.power > 100) {
+            this.power -= 2;
+          } else if (this.cursors.right.isDown && this.power < 600) {
+            this.power += 2;
+          }
+
+          if (this.cursors.up.isDown && this.turret.angle > -90) {
+            this.turret.angle--;
+          } else if (this.cursors.down.isDown && this.turret.angle < 0) {
+            this.turret.angle++;
+          }
+
+          //  Update the text
+          this.powerText.text = 'Power: ' + this.power;
+        }
+      } else {
+        this.goHome();
+        this.playerUpdate();
+        console.log(this.tankScore);
+      }
+    }
+  }]);
+
+  return _class;
+}(_phaser2.default.State);
+
+exports.default = _class;
+;
 
 /***/ })
 ],[316]);
