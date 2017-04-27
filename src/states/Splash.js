@@ -17,6 +17,7 @@ export default class Splash extends Phaser.State {
     this.load.image('map', 'assets/splash/grass.png');
     this.load.image('dude', 'assets/splash/sprite.png');
     this.load.audio('music', 'assets/audio/QuantumLeap.mp3');
+    this.load.audio('shallweplay', 'assets/splash/audio/playgames.wav');
   }
 
   create () {
@@ -54,8 +55,10 @@ export default class Splash extends Phaser.State {
       this.star.body.immovable = true;
     }
 
-    this.music = this.add.audio('music');
-    this.music.play();
+    // this.music = this.add.audio('music');
+    // this.music.play();
+    this.startSound = this.add.audio('shallweplay');
+    this.startSound.play();
 
     this.bird = this.add.sprite(600, 100, 'bird');
     this.physics.arcade.enable(this.bird);

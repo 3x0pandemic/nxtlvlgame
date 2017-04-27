@@ -55,6 +55,7 @@ export default class TankMenu extends Phaser.State {
   update () {
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
     }
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;

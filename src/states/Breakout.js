@@ -57,6 +57,7 @@ export default class Breakout extends Phaser.State {
   update () {
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
     }
 
     if (this.left.isDown) {

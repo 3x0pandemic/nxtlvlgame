@@ -9,15 +9,15 @@ export default class FlappyMenu extends Phaser.State {
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Flappy the Bird\nPress <esc> to exit', {
+    this.titleText = this.make.text(this.world.centerX, 100, 'Flappy the Bird', {
       font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
+      fill: 'black',
       align: 'center'
     });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
-      fill: 'red',
-      align: 'center'
+    this.titleText2 = this.make.text(this.world.centerX, 450, 'Instructions: Press Spacebar To "Flap".\nPress <esc> To Exit.\nYou will need a minimum \nof 20 points to proceed!', {
+      font: 'bold 18pt TheMinion',
+      fill: 'black'
+
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
@@ -55,6 +55,7 @@ export default class FlappyMenu extends Phaser.State {
   update () {
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
     }
     this.player.body.velocity.x = 0;
     this.player.body.velocity.y = 0;
@@ -80,6 +81,13 @@ export default class FlappyMenu extends Phaser.State {
       this.player.animations.stop();
       this.player.frame = 4;
     }
+    if (this.physics.arcade.collide(this.player, this.bird)) {
+      this.goToFlappy();
+    }
+    this.bird = this.add.sprite(100, 400, 'bird');
+    this.physics.arcade.enable(this.bird);
+    this.bird.body.immovable = true;
+    this.bird.body.collideWorldBounds = true;
   }
 
   goToFlappy () {

@@ -9,8 +9,10 @@ import LuigiMenu from './states/LuigiMenu';
 import TankMenu from './states/TankMenu';
 import FlappyMenu from './states/FlappyMenu';
 import BreakoutMenu from './states/BreakoutMenu';
-import FlappyGameOver from './states/flappyGameOver';
-import BreakoutGameOver from './states/breakoutGameOver';
+import FlappyGameOver from './states/FlappyGameOver';
+import BreakoutGameOver from './states/BreakoutGameOver';
+import TankGameOver from './states/TankGameOver';
+import LuigiGameOver from './states/LuigiGameOver';
 
 import config from './config';
 
@@ -38,6 +40,8 @@ class Game extends Phaser.Game {
     this.state.add('BreakoutMenu', BreakoutMenu, false);
     this.state.add('FlappyGameOver', FlappyGameOver, false);
     this.state.add('BreakoutGameOver', BreakoutGameOver, false);
+    this.state.add('TankGameOver', TankGameOver, false);
+    this.state.add('LuigiGameOver', LuigiGameOver, false);
 
     this.state.start('Splash');
   }

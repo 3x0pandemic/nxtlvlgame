@@ -21,7 +21,7 @@ export default class Tank extends Phaser.State {
     // this.load.baseURL = 'http://files.phaser.io.s3.amazonaws.com/codingtips/issue001/';
     // this.load.crossOrigin = 'anonymous';
     this.load.image('tank', 'assets/tank.png');
-    this.load.image('turret', 'assets/turret.png');
+    this.load.image('turret', 'assets/splash/rifle.png');
     this.load.image('bullet', 'assets/bullet.png');
     this.load.image('background1', 'assets/background.png');
     this.load.image('flame', 'assets/flame.png');
@@ -45,7 +45,7 @@ export default class Tank extends Phaser.State {
     this.tank = this.add.sprite(24, 383, 'tank');
 
     //  The turret which we rotate (offset 30x14 from the tank)
-    this.turret = this.add.sprite(this.tank.x + 30, this.tank.y + 14, 'turret');
+    this.turret = this.add.sprite(this.tank.x, this.tank.y, 'turret');
 
     //  When we shoot this little flame sprite will appear briefly at the end of the turret
     this.flame = this.add.sprite(0, 0, 'flame');
@@ -110,7 +110,7 @@ export default class Tank extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('TankMenu');
+    this.state.start('TankGameOver');
     this.resetGame();
   }
 
@@ -139,6 +139,7 @@ export default class Tank extends Phaser.State {
     }
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
     } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 420) {

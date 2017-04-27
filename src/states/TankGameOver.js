@@ -1,25 +1,27 @@
 
 import Phaser from 'phaser';
 
-export default class Splash extends Phaser.State {
+export default class extends Phaser.State {
   constructor () {
     super();
     this.text = '';
+    this.bird = null;
+    this.flappyButton = null;
     this.x = 32;
     this.y = 80;
     this.music = null;
   }
 
   init () {
-    this.titleText = this.make.text(this.world.centerX, 100, 'Game Over\nTry Again?', {
-      font: 'bold 60pt TheMinion',
-      fill: '#FDFFB5',
-      align: 'center'
-    });
-    this.titleText2 = this.make.text(this.world.centerX, 500, 'Testing...', {
-      font: 'bold 60pt TheMinion',
+    this.titleText = this.make.text(this.world.centerX, 200, 'Game Over. \n Play Again?', {
+      font: 'bold 72pt TheMinion',
       fill: 'red',
       align: 'center'
+    });
+    this.titleText2 = this.make.text(this.world.centerX, 150, 'You need a minimum of 20 points to proceed!', {
+      font: 'bold 20pt TheMinion',
+      fill: 'black',
+      align: 'left'
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
@@ -28,9 +30,9 @@ export default class Splash extends Phaser.State {
 
   preload () {
     this.load.image('title', 'assets/logo.png');
-    this.load.image('startButton', 'assets/power.png');
+    this.load.image('startButton', 'assets/Menu/power.png');
     this.load.image('stopButton', 'assets/cancel.png');
-    this.load.image('background', 'assets/options-bg.jpg');
+    this.load.image('background', 'assets/Menu/gameoverwall.jpg');
   }
 
   create () {
@@ -53,8 +55,8 @@ export default class Splash extends Phaser.State {
 
     // Just to kick things off
     // this.button = this.add.button(this.world.centerY - 100, 300, 'button', this.goToGame, this, 2, 1, 0);
-    this.startButton = this.add.button(100, 400, 'startButton', this.goToBreakOut, this, 2, 1, 0);
-    this.stopButton = this.add.button(300, 400, 'stopButton', this.goHome, this, 2, 1, 0);
+    this.startButton = this.add.button(200, 400, 'startButton', this.goToTank, this, 2, 1, 0);
+    this.stopButton = this.add.button(450, 400, 'stopButton', this.goHome, this, 2, 1, 0);
     // this.flappyButton = this.add.button(this.world.centerY - 100, 200, 'flappyButton', this.goToFlappy, this, 2, 1, 0);
     // this.breakoutButton = this.add.button(this.world.centerY - 100, 50, 'breakoutButton', this.goToBreakOut, this, 2, 1, 0);
 
@@ -74,6 +76,7 @@ export default class Splash extends Phaser.State {
   update () {
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
     }
 
     this.player.body.velocity.x = 0;
@@ -127,8 +130,8 @@ export default class Splash extends Phaser.State {
     this.physics.arcade.collide(this.player, this.rock4);
   }
 
-  goToBreakOut () {
-    this.state.start('BreakOut');
+  goToFlappy () {
+    this.state.start('Flappy');
     this.music.stop();
   }
 

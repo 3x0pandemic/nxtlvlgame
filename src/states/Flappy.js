@@ -48,6 +48,7 @@ export default class Flappy extends Phaser.State {
   update () {
     if (this.escape.isDown) {
       this.goHome();
+      this.music.stop();
       // If the bird is out of the screen (too high or too low)
       // Call the 'restartGame' function
     } else if (this.bird.y < 0 || this.bird.y > 800) {
@@ -102,12 +103,9 @@ export default class Flappy extends Phaser.State {
     this.hole = Math.floor(Math.random() * 5) + 1;
     // Add the 6 pipes
     // With one big hole at position 'hole' and 'hole + 1'
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 10; i++) {
       if (i !== this.hole && i !== this.hole + 1) {
         this.addOnePipe(800, i * 60 + 10);
-      }
-      if (this.score > 5) {
-        this.time.events.remove(this.timer);
       }
     }
   }
