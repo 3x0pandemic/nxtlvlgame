@@ -5169,7 +5169,6 @@ var Luigi = function (_Phaser$State) {
 
       if (this.escape.isDown) {
         this.goHome();
-        this.music.stop();
       } else if (this.score < 120) {
         //  Collide the player and the stars with the platforms
         this.hitPlatform = this.physics.arcade.collide(this.player, this.platforms);
@@ -5688,8 +5687,8 @@ var Splash = function (_Phaser$State) {
         this.star.body.immovable = true;
       }
 
-      // this.music = this.add.audio('music');
-      // this.music.play();
+      this.music = this.add.audio('music');
+      this.music.play();
       this.startSound = this.add.audio('shallweplay');
       this.startSound.play();
 
@@ -5944,7 +5943,7 @@ var Tank = function (_Phaser$State) {
   }, {
     key: 'goHome',
     value: function goHome() {
-      this.state.start('TankGameOver');
+      this.state.start('TankMenu');
       this.resetGame();
     }
   }, {
@@ -5976,7 +5975,6 @@ var Tank = function (_Phaser$State) {
       }
       if (this.escape.isDown) {
         this.goHome();
-        this.music.stop();
       } else if (this.targetCount > 0) {
         if (this.bullet.exists) {
           if (this.bullet.y > 420) {

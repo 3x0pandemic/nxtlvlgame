@@ -55,8 +55,8 @@ export default class Splash extends Phaser.State {
       this.star.body.immovable = true;
     }
 
-    // this.music = this.add.audio('music');
-    // this.music.play();
+    this.music = this.add.audio('music');
+    this.music.play();
     this.startSound = this.add.audio('shallweplay');
     this.startSound.play();
 

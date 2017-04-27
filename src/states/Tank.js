@@ -110,7 +110,7 @@ export default class Tank extends Phaser.State {
   }
 
   goHome () {
-    this.state.start('TankGameOver');
+    this.state.start('TankMenu');
     this.resetGame();
   }
 
@@ -139,7 +139,6 @@ export default class Tank extends Phaser.State {
     }
     if (this.escape.isDown) {
       this.goHome();
-      this.music.stop();
     } else if (this.targetCount > 0) {
       if (this.bullet.exists) {
         if (this.bullet.y > 420) {
